@@ -50,7 +50,8 @@ THIRD_PARTY_APPS = [
 
 MY_APPS = [
     "addresses",
-    "categories" "events",
+    "categories",
+    "events",
     "line_up",
     "reviews",
     "users",
