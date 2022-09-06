@@ -6,7 +6,7 @@ from users.models import User
 from events.models import Event
 
 class DeleteEventTest(APITestCase):
-    fixtures = ["borala_rest_api.json"]
+    fixtures = ["user-fixture.json", "event-fixture.json"]
 
     @classmethod
     def setUpTestData(cls):
@@ -21,7 +21,7 @@ class DeleteEventTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response      = self.client.delete(f"/api/users/{self.event.id}/")
+        response      = self.client.delete(f"/api/events/{self.event.id}/")
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)        
@@ -30,7 +30,7 @@ class DeleteEventTest(APITestCase):
     def test_should_not_accept_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')
 
-        response      = self.client.delete(f"/api/users/{self.event.id}/")
+        response      = self.client.delete(f"/api/events/{self.event.id}/")
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)        
@@ -41,7 +41,7 @@ class DeleteEventTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response = self.client.delete(f"/api/users/{self.event.id}/")
+        response = self.client.delete(f"/api/events/{self.event.id}/")
         
         try:
             User.objects.get(id=self.event.id)
