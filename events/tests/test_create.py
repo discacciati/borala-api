@@ -8,6 +8,7 @@ from users.models import User
 from events.models import Event
 
 class CreateEventTest(APITestCase):
+    fixtures = ['user-fixture.json']
 
     @classmethod
     def setUpTestData(cls):
