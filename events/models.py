@@ -12,4 +12,5 @@ class Event(models.Model):
    
     categories = models.ManyToManyField("categories.category", on_delete=models.CASCADE , related_name="events" )
     user = models.ForeignKey("users.user", on_delete=models.CASCADE, related_name="events")
-    address = models.ForeignKey("addresses.addresses", on_delete=models.CASCADE, related_name="event")
+    address = models.ForeignKey("addresses.address", on_delete=models.CASCADE, related_name="event")
+    
