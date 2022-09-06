@@ -6,6 +6,7 @@ from django.db import models
 class Address(models.Model):
     id = models.UUIDField(default=uuid.uuid4(), primary_key=True, editable=False)
     state = models.CharField(max_length=2)
+    city = models.CharField(max_length=50)
     postal_code = models.PositiveIntegerField(max_length=8)
     street = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
