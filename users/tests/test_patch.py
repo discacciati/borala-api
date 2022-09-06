@@ -33,9 +33,7 @@ class UserPatchTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)        
         self.assertEqual(response_dict["last_name"], self.user_patch_info["last_name"])
         self.assertEqual(response_dict["last_name"], updated_user.last_name)
-        self.assertTrue(response_dict["is_active"])
-        self.assertTrue(updated_user.is_active)
-    
+        
     def test_should_not_accept_other_user(self):
         token,_ = Token.objects.get_or_create(user_id=self.other_user.id)
 
