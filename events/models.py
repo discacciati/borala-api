@@ -1,3 +1,21 @@
+import uuid
+
 from django.db import models
 
-# Create your models here.
+
+class Event(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    title = models.CharField(max_length=100)
+    date = models.DateField()
+    description = models.TextField()
+    price = models.FloatField(null=True, blank=True, default=0)
+    sponsor = models.CharField(max_length=50, null=True, blank=True)
+    is_active = models.BooleanField(blank=True, null=True, default=True)
+
+    categories = models.ManyToManyField("categories.category", related_name="events")
+    user = models.ForeignKey(
+        "users.user", on_delete=models.CASCADE, related_name="events"
+    )
+    address = models.ForeignKey(
+        "addresses.address", on_delete=models.CASCADE, related_name="event"
+    )
