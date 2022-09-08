@@ -3,7 +3,7 @@ from rest_framework.views import status
 
 from users.models import User
 
-class UserListTest(APITestCase):
+class UserListOneTest(APITestCase):
     fixtures = ["user-fixture.json"]
 
     @classmethod
