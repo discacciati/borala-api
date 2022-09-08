@@ -12,8 +12,9 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class ReviewDetailSerializer(serializers.ModelSerializer):
-    # user = UserSerializer(read_only=True)
-    # event =EventSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
+    event = EventSerializer(read_only=True)
+
     class Meta:
         model = Review
         fields = "__all__"
