@@ -3,7 +3,7 @@ from events.models import Event
 from categories.models import Category
 
 class CategoryRelationTest(APITestCase):
-    fixtures = ['address-fixture.json', 'event-fixture.json']
+    fixtures = ['category-fixture.json', 'event-fixture.json']
 
     @classmethod
     def setUpTestData(cls) -> None:
