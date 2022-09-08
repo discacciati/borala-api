@@ -14,6 +14,9 @@ class IsOwnerPermission(permissions.BasePermission):
         return request.user.id == obj.id
 
 
-class IsSuperUserDelete(permissions.BasePermission):
-    def has_permission(self, request, view: View):
-        return request.method == 'DELETE' and request.user.is_superuser
+class IsSuperUserDeleteOrOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view: View, obj: User):
+        if request.method == 'DELETE' and request.user.is_superuser:
+            return True
+
+        return request.user.id == obj.id

@@ -3,7 +3,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.views import APIView, Request, Response, status
 
 from .models import User
-from .permissions import IsOwnerPermission, IsSuperUserPermission
+from .permissions import IsSuperUserDeleteOrOwner, IsSuperUserPermission
 from .serializers import UserDetailSerializer, UserSerializer
 
 
@@ -21,4 +21,4 @@ class UserRegisterView(generics.CreateAPIView):
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
-    permission_classes = [IsOwnerPermission]
+    permission_classes = [IsSuperUserDeleteOrOwner]
