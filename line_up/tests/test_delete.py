@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 
 from users.models import User
 from events.models import Event
-from line_up.models import Lineup
+from line_up.models import LineUp
 
 class DeleteLineupTest(APITestCase):
     fixtures = ["user-fixture.json", "event-fixture.json", "lineup-fixture.json"]
@@ -14,7 +14,7 @@ class DeleteLineupTest(APITestCase):
         cls.event      = Event.objects.all()[0]
         cls.admin_user = User.objects.get(is_superuser=True)
         cls.user       = User.objects.get(is_staff=False)
-        cls.lineup     = Lineup.objects.filter(event_id=cls.event.id)[0]
+        cls.lineup     = LineUp.objects.filter(event_id=cls.event.id)[0]
 
         cls.client = APIClient()
     
