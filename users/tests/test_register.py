@@ -49,7 +49,6 @@ class RegisterTest(APITestCase):
         self.assertEqual(response_dict["last_name"], user.last_name)
         self.assertEqual(response_dict["is_seller"], user.is_seller)
 
-
         self.assertTrue(check_password(self.user_data["password"], user.password))
 
     def test_should_create_promoter(self):

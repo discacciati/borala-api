@@ -19,7 +19,7 @@ class UserDeleteTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response      = self.client.delete(f"/api/users/{self.user.id}/", self.user_patch_info)
+        response      = self.client.delete(f"/api/users/{self.user.id}/")
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)        
@@ -28,7 +28,7 @@ class UserDeleteTest(APITestCase):
     def test_should_not_accept_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')
 
-        response      = self.client.delete(f"/api/users/{self.user.id}/", self.user_patch_info)
+        response      = self.client.delete(f"/api/users/{self.user.id}/")
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)        
