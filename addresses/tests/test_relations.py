@@ -24,9 +24,9 @@ class AddressRelationTest(APITestCase):
         try:
             self.address_serializer.is_valid(raise_exception=True)
             self.address_serializer.save()
-            self.fail("event being saved without user")
+            self.fail("Address being saved without event")
         except:
-            self.assertEqual(len(Event.objects.filter(**self.new_address_data)), 0)
+            self.assertEqual(len(Address.objects.filter(**self.new_address_data)), 0)
     
     def test_address_should_have_correct_event(self):
         address_event = self.address.event
