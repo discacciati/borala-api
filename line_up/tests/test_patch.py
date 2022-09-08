@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 
 from users.models import User
 from events.models import Event
-from line_up.models import Lineup
+from line_up.models import LineUp
 
 class EventPatchTest(APITestCase):
     fixtures = ["user-fixture.json", "event-fixture.json", "lineup-fixture.json"]
@@ -12,7 +12,7 @@ class EventPatchTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         event       = Event.objects.all()[0]
-        lineup_list = Lineup.objects.filter(event_id=event.id)
+        lineup_list = LineUp.objects.filter(event_id=event.id)
         
         cls.event         = event
         cls.lineup        = lineup_list[0]
@@ -44,7 +44,7 @@ class EventPatchTest(APITestCase):
         self.assertIn('detail', response_dict.keys())
 
         try:
-            database_lineup = Lineup.objects.get(self.second_lineup.id)
+            database_lineup = LineUp.objects.get(self.second_lineup.id)
         except:
             self.fail("Patch should not delete object")
 
@@ -71,12 +71,12 @@ class EventPatchTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)        
 
         try:
-            database_event = Event.objects.get(self.second_lineup.id)
+            database_lineup = LineUp.objects.get(self.second_lineup.id)
 
             self.assertEqual(response_dict["title"], self.lineup_patch_info["title"])
             self.assertEqual(response_dict["is_active"], self.lineup_patch_info["is_active"])
 
-            self.assertEqual(database_event.title, self.lineup_patch_info["title"])
-            self.assertEqual(database_event.is_active, self.lineup_patch_info["is_active"])
+            self.assertEqual(database_lineup.title, self.lineup_patch_info["title"])
+            self.assertEqual(database_lineup.is_active, self.lineup_patch_info["is_active"])
         except:
             self.fail("Patch should not delete object")
