@@ -11,6 +11,7 @@ class LineUp(models.Model):
     description = models.TextField()
     price = models.FloatField(default=0)
     talent = models.TextField()
+    is_active = models.BooleanField(default=True)
 
     event = models.ForeignKey(
         "events.Event", on_delete=models.CASCADE, related_name="lineup"

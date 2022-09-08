@@ -5,7 +5,7 @@ from rest_framework.authtoken.models import Token
 
 from users.models import User
 from events.models import Event
-from line_up.models import Lineup
+from line_up.models import LineUp
 
 class CreateLineupTest(APITestCase):
     fixtures = ['user-fixture.json', 'event-fixture.json']
@@ -32,7 +32,7 @@ class CreateLineupTest(APITestCase):
 
         response      = self.client.post(f'/api/events/{self.event.id}/lineup/', self.lineup_data)
         response_dict = response.json()
-        lineup        = Lineup.objects.get(id=response_dict["id"])
+        lineup        = LineUp.objects.get(id=response_dict["id"])
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(uuid.UUID(response_dict["id"]))

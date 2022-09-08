@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
 
 from events.models import Event
-from line_up.models import Lineup
+from line_up.models import LineUp
 
 class LineupListTest(APITestCase):
     fixtures = ["event-fixture.json", "lineup-fixture.json"]
@@ -10,7 +10,7 @@ class LineupListTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.event       = Event.objects.all()[0]
-        cls.lineup_list = Lineup.objects.filter(event_id=cls.event.id)
+        cls.lineup_list = LineUp.objects.filter(event_id=cls.event.id)
         cls.lineup_len  = len(cls.lineup_list)
 
         cls.client = APIClient()

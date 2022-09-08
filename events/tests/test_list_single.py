@@ -3,7 +3,7 @@ from rest_framework.views import status
 
 from events.models import Event
 
-class EventListTest(APITestCase):
+class EventListOneTest(APITestCase):
     fixtures = ["event-fixture.json"]
 
     @classmethod
