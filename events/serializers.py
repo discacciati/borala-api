@@ -16,6 +16,16 @@ class EventSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ["user"]
 
+
+class EventDetailedSerializer(serializers.ModelSerializer):
+    categories = CategorySerializer(read_only=True)
+    address = AddressSerializer(read_only=True)
+
+    class Meta:
+        model = Event
+        fields = "__all__"
+        read_only_fields = ["id", "user" "is_superuser", "is_promoter"]
+
     def create(self, validated_data: dict):
         categories_data = validated_data.pop("categories")
         address_data = validated_data.pop("address")
@@ -32,29 +42,21 @@ class EventSerializer(serializers.ModelSerializer):
 
         return event
 
-
-class EventDetailedSerializer(serializers.ModelSerializer):
-    categories = CategorySerializer(read_only=True)
-    address = AddressSerializer(read_only=True)
-
-    class Meta:
-        model = Event
-        fields = "__all__"
-        read_only_fields = ["id", "user" "is_superuser", "is_promoter"]
-
     def update(self, instance: Event, validated_data: dict):
-        categories_data = validated_data.pop("categories")
-        address_data = validated_data.pop("address")
+
+        if "address" in validated_data.keys():
+            address_data = validated_data.pop("address")
+            for key, value in address_data.items():
+                setattr(instance.address, key, value)
+
+        if "categories" in validated_data.keys():
+            categories_data = validated_data.pop("categories")
+            for category in categories_data:
+                category_created, _ = Category.objects.get_or_create(**category)
+                instance.categories.add(category_created)
 
         for key, value in validated_data.items():
             setattr(instance, key, value)
-
-        for category in categories_data:
-            category_created, _ = Category.objects.get_or_create(**category)
-            instance.categories.add(category_created)
-
-        for key, value in address_data.items():
-            setattr(instance.address, key, value)
 
         instance.save()
 
