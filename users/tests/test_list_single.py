@@ -13,7 +13,7 @@ class UserListOneTest(APITestCase):
         cls.client = APIClient()
     
     def test_should_list_user(self):
-        response      = self.client.get("/api/users/")
+        response      = self.client.get(f"/api/users/{self.user.id}")
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
