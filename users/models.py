@@ -5,7 +5,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    id = models.UUIDField(default=uuid.uuid4(), editable=False, primary_key=True)
+    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=50, unique=True)
     password = models.CharField(max_length=255)

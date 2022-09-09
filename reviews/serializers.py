@@ -10,7 +10,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = "__all__"
 
-        read_only_fields = ["id"]
+        read_only_fields = ["id", "event", "user"]
 
 
 class ReviewDetailSerializer(serializers.ModelSerializer):

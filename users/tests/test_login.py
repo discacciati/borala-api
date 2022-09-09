@@ -3,7 +3,7 @@ from rest_framework.views import status
 from rest_framework.authtoken.models import Token
 
 class LoginTest(APITestCase):
-    fixtures = ['account-fixture.json']
+    fixtures = ['user-fixture.json']
     
     @classmethod
     def setUpTestData(cls):
