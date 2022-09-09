@@ -32,7 +32,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["bora-la-api.herokuapp.com", "localhost"]
 
-
 # Application definition
 DJANGO_APPS = [
     "django.contrib.admin",
