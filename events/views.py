@@ -11,12 +11,12 @@ from .mixins import SerializerByMethodMixin
 
 from .models import Event
 from .serializers import EventSerializer, EventDetailedSerializer
-from .permissions import IsOwnerOrReadyOnly
+from .permissions import IsOwnerOrReadOnly
 
 
 class EventView(SerializerByMethodMixin, generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsOwnerOrReadyOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
     queryset = Event.objects.all()
 
@@ -43,7 +43,9 @@ class EventClosestDetailView(generics.ListAPIView):
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsOwnerOrReadyOnly]
+    permission_classes = [IsOwnerOrReadOnly]
+    lookup_field = 'id'
+    lookup_url_kwarg = 'event_id'
 
     queryset = Event.objects.all()
 
