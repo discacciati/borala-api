@@ -16,45 +16,49 @@ class EventSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ["user"]
 
-    def create(self, validated_data: dict):
-        categories_data = validated_data.pop("categories")
-        address_data = validated_data.pop("address")
-
-        event: Event = Event.objects.create(**validated_data)
-
-        for category in categories_data:
-            category_created, _ = Category.objects.get_or_create(**category)
-            event.categories.add(category_created)
-
-        address_created, _ = Address.objects.create(**address_data)
-
-        event.address.add(address_created)
-
-        return event
-
 
 class EventDetailedSerializer(serializers.ModelSerializer):
-    categories = CategorySerializer(read_only=True)
-    address = AddressSerializer(read_only=True)
+    categories = CategorySerializer(many=True)
+    address    = AddressSerializer()
 
     class Meta:
         model = Event
         fields = "__all__"
-        read_only_fields = ["id", "user" "is_superuser", "is_promoter"]
+        read_only_fields = ["id", "user", "is_superuser", "is_promoter"]
+        depth = 1
+
+    def create(self, validated_data: dict):
+        categories_data = validated_data.pop("categories")
+        address_data    = validated_data.pop("address")
+
+        address = Address.objects.create(**address_data)
+
+        event: Event = Event.objects.create(**validated_data, address=address)
+
+        for category in categories_data:
+            print(category)
+            category_created,_ = Category.objects.get_or_create(**category)
+            
+            event.categories.add(category_created)
+            event.save()
+
+        return event
 
     def update(self, instance: Event, validated_data: dict):
-        categories_data = validated_data.pop("categories")
-        address_data = validated_data.pop("address")
+
+        if "address" in validated_data.keys():
+            address_data = validated_data.pop("address")
+            for key, value in address_data.items():
+                setattr(instance.address, key, value)
+
+        if "categories" in validated_data.keys():
+            categories_data = validated_data.pop("categories")
+            for category in categories_data:
+                category_created, _ = Category.objects.get_or_create(**category)
+                instance.categories.add(category_created)
 
         for key, value in validated_data.items():
             setattr(instance, key, value)
-
-        for category in categories_data:
-            category_created, _ = Category.objects.get_or_create(**category)
-            instance.categories.add(category_created)
-
-        for key, value in address_data.items():
-            setattr(instance.address, key, value)
 
         instance.save()
 
