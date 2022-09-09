@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from reviews.mixin import serializerByMethodMixin
 from reviews.models import Review
+from events.models  import Event
 from reviews.permissions import CustomProductPermission
 from reviews.serializers import ReviewDetailSerializer, ReviewSerializer
 
@@ -20,7 +21,10 @@ class ReviewView(serializerByMethodMixin, generics.ListCreateAPIView):
     }
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        event_id = self.kwargs["event_id"]
+        event    = Event.objects.get(id=event_id)
+
+        serializer.save(user=self.request.user, event=event)
 
 
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
