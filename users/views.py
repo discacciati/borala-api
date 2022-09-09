@@ -1,9 +1,8 @@
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.views import APIView, Request, Response, status
 
 from .models import User
-from .permissions import IsSuperUserDeleteOrOwner, IsSuperUserPermission
+from .permissions import IsSuperUserMethodOrOwner, IsSuperUserPermission
 from .serializers import UserDetailSerializer, UserSerializer
 
 
@@ -21,4 +20,8 @@ class UserRegisterView(generics.CreateAPIView):
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
-    permission_classes = [IsSuperUserDeleteOrOwner]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsSuperUserMethodOrOwner]
+    lookup_field = 'id'
+    lookup_url_kwarg = 'user_id'
+    admin_methods    = ["DELETE", "GET"]
