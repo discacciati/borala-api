@@ -6,7 +6,7 @@ from .models import User
 
 class IsSuperUserPermission(permissions.BasePermission):
     def has_permission(self, request: Request, view: View):
-        return request.method in permissions.SAFE_METHODS or request.user.is_superuser
+        return request.user.is_superuser
 
 
 class IsOwnerPermission(permissions.BasePermission):
