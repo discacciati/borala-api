@@ -2,9 +2,12 @@ from addresses.models import Address
 from addresses.serializers import AddressSerializer
 from categories.models import Category
 from categories.serializers import CategorySerializer
+from line_up.serializers import LineupSerializer
 from rest_framework import serializers
 
 from .models import Event
+
+### retirar usuarios no retorno do post
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -19,17 +22,19 @@ class EventSerializer(serializers.ModelSerializer):
 
 class EventDetailedSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
-    address    = AddressSerializer()
+    address = AddressSerializer()
+    line_up = LineupSerializer(read_only=True)
 
     class Meta:
         model = Event
-        fields = "__all__"
-        read_only_fields = ["id", "user", "is_superuser", "is_promoter"]
+
+        read_only_fields = ["id", "is_superuser", "is_promoter", "line_up"]
+        exclude = ["user"]
         depth = 1
 
     def create(self, validated_data: dict):
         categories_data = validated_data.pop("categories")
-        address_data    = validated_data.pop("address")
+        address_data = validated_data.pop("address")
 
         address = Address.objects.create(**address_data)
 
@@ -37,8 +42,8 @@ class EventDetailedSerializer(serializers.ModelSerializer):
 
         for category in categories_data:
             print(category)
-            category_created,_ = Category.objects.get_or_create(**category)
-            
+            category_created, _ = Category.objects.get_or_create(**category)
+
             event.categories.add(category_created)
             event.save()
 
