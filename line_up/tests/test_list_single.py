@@ -27,6 +27,6 @@ class LineupListOneTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         self.assertEqual(response_dict["title"], self.lineup.title)
-        self.assertEqual(response_dict["hour"], self.lineup.hour)
+        self.assertEqual(response_dict["hour"], str(self.lineup.hour))
         self.assertEqual(response_dict["description"], self.lineup.description)
         self.assertEqual(response_dict["talent"], self.lineup.talent)

@@ -10,11 +10,11 @@ class UserDeleteTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.admin_user = User.objects.filter(is_superuser=True)[0]
-        cls.user       = User.objects.filter(is_staff=False)[0]
+        cls.user       = User.objects.filter(is_superuser=False)[0]
 
         cls.client = APIClient()
     
-    def test_should_not__accept_non_admin_user(self):
+    def test_should_not_accept_non_admin_user(self):
         token,_ = Token.objects.get_or_create(user_id=self.user.id)
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)

@@ -28,7 +28,7 @@ class EventPatchTest(APITestCase):
 
         cls.review_patch_info = {
             "title":"Show do Luan Santana",
-            "rating":5,
+            "rating":3,
         }
 
         cls.previous_data = {
@@ -55,7 +55,7 @@ class EventPatchTest(APITestCase):
             self.fail("Patch should not delete object")
 
         self.assertNotEqual(database_review.title, self.review_patch_info["title"])
-        self.assertNotEqual(database_review.is_active, self.review_patch_info["is_active"])
+        self.assertNotEqual(database_review.rating, self.review_patch_info["rating"])
 
     def test_should_not_accept_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')

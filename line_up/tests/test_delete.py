@@ -30,7 +30,7 @@ class DeleteLineupTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
         try:
-            response = self.client.delete(f"/api/events/{self.event.id}/")
+            response = self.client.delete(f"/api/events/{self.event.id}/lineup/{self.lineup.id}/")
         except Exception as e:
             self.fail(f'deletion is failing with message: {str(e)}')
             
@@ -43,7 +43,7 @@ class DeleteLineupTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')
 
         try:
-            response = self.client.delete(f"/api/events/{self.event.id}/")
+            response = self.client.delete(f"/api/events/{self.event.id}/lineup/{self.lineup.id}/")
         except Exception as e:
             self.fail(f'deletion is failing with message: {str(e)}')
 
@@ -58,7 +58,7 @@ class DeleteLineupTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
         try:
-            response = self.client.delete(f"/api/events/{self.event.id}/")
+            response = self.client.delete(f"/api/events/{self.event.id}/lineup/{self.lineup.id}/")
         except Exception as e:
             self.fail(f'deletion is failing with message: {str(e)}')
         

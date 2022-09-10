@@ -31,7 +31,7 @@ class RegisterTest(APITestCase):
     
     def test_should_create_user(self):
         try:
-            response = self.client.post('/api/register/', self.promoter_data)
+            response = self.client.post('/api/register/', self.user_data)
         except Exception as e:
             self.fail(f"Creation failed with error:{str(e)}")
             
@@ -51,7 +51,7 @@ class RegisterTest(APITestCase):
         self.assertEqual(response_dict["first_name"], user.first_name)
         self.assertEqual(response_dict["email"], user.email)
         self.assertEqual(response_dict["last_name"], user.last_name)
-        self.assertEqual(response_dict["is_seller"], user.is_seller)
+        self.assertEqual(response_dict["is_promoter"], user.is_promoter)
 
         self.assertTrue(check_password(self.user_data["password"], user.password))
 
@@ -82,7 +82,7 @@ class RegisterTest(APITestCase):
         self.assertTrue(check_password(self.promoter_data["password"], user.password))
     
     def test_should_not_create_user_without_data(self):
-        response      = self.client.post('/api/users/', {})
+        response      = self.client.post('/api/register/', {})
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

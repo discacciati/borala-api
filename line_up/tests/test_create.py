@@ -43,7 +43,7 @@ class CreateLineupTest(APITestCase):
         self.assertEqual(response_dict["talent"], self.lineup_data["talent"])
 
         self.assertEqual(response_dict["title"], lineup.title)
-        self.assertEqual(response_dict["hour"], lineup.hour)
+        self.assertEqual(response_dict["hour"], str(lineup.hour))
         self.assertEqual(response_dict["description"], lineup.description)
         self.assertEqual(response_dict["talent"], lineup.talent)
 
