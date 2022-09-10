@@ -7,13 +7,19 @@ from events.models import Event
 from line_up.models import LineUp
 
 class DeleteLineupTest(APITestCase):
-    fixtures = ["user-fixture.json", "event-fixture.json", "lineup-fixture.json"]
+    fixtures = [
+        'user-fixture.json',
+        'event-fixture.json', 
+        'address-fixture.json', 
+        'category-fixture.json', 
+        'lineup-fixture.json'
+    ]
 
     @classmethod
     def setUpTestData(cls):
-        cls.event      = Event.objects.all()[0]
-        cls.admin_user = User.objects.get(is_superuser=True)
-        cls.user       = User.objects.get(is_staff=False)
+        cls.event      = Event.objects.all()[1]
+        cls.admin_user = User.objects.filter(is_superuser=True)[0]
+        cls.user       = User.objects.filter(is_staff=False)[0]
         cls.lineup     = LineUp.objects.filter(event_id=cls.event.id)[0]
 
         cls.client = APIClient()
@@ -23,7 +29,11 @@ class DeleteLineupTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response      = self.client.delete(f"/api/events/{self.event.id}/lineup/{self.lineup.id}")
+        try:
+            response = self.client.delete(f"/api/events/{self.event.id}/")
+        except Exception as e:
+            self.fail(f'deletion is failing with message: {str(e)}')
+            
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)        
@@ -32,7 +42,11 @@ class DeleteLineupTest(APITestCase):
     def test_should_not_accept_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')
 
-        response      = self.client.delete(f"/api/events/{self.event.id}/lineup/{self.lineup.id}")
+        try:
+            response = self.client.delete(f"/api/events/{self.event.id}/")
+        except Exception as e:
+            self.fail(f'deletion is failing with message: {str(e)}')
+
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)        
@@ -43,10 +57,13 @@ class DeleteLineupTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response = self.client.delete(f"/api/events/{self.event.id}/lineup/{self.lineup.id}")
+        try:
+            response = self.client.delete(f"/api/events/{self.event.id}/")
+        except Exception as e:
+            self.fail(f'deletion is failing with message: {str(e)}')
         
         try:
-            User.objects.get(id=self.event.id)
+            LineUp.objects.get(id=self.lineup.id)
         except:
             self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 

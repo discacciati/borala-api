@@ -8,38 +8,40 @@ from users.models import User
 from events.models import Event
 
 class CreateEventTest(APITestCase):
-    fixtures = ['user-fixture.json']
+    fixtures = ['user-fixture.json', 'event-fixture.json', 'address-fixture.json', 'category-fixture.json']
 
     @classmethod
     def setUpTestData(cls):
-        cls.promoter   = User.objects.get(is_promoter=True)
-        cls.other_user = User.objects.get(is_promoter=False)
+        cls.promoter   = User.objects.filter(is_promoter=True)[0]
+        cls.other_user = User.objects.filter(is_promoter=False)[0]
 
         cls.event_data = {
-            "name":"festa no ape",
+            "title":"festa no ape",
             "date":"2022-09-07",
             "description":"vai rolar bunda-lele",
         }
 
         cls.client = APIClient()
     
-    def test_should_create_user(self):
+    def test_should_create_event(self):
         token,_ = Token.objects.get_or_create(user_id=self.promoter.id)
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
         response      = self.client.post('/api/events/', self.event_data)
         response_dict = response.json()
-        event         = Event.objects.get(id=response_dict["id"])
+        print(response_dict)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(uuid.UUID(response_dict["id"]))
 
-        self.assertEqual(response_dict["name"], self.event_data["name"])
+        event         = Event.objects.get(id=response_dict["id"])
+
+        self.assertEqual(response_dict["title"], self.event_data["title"])
         self.assertEqual(response_dict["date"], self.event_data["date"])
         self.assertEqual(response_dict["description"], self.event_data["description"])
 
-        self.assertEqual(response_dict["name"], event.name)
+        self.assertEqual(response_dict["title"], event.title)
         self.assertEqual(response_dict["date"], event.date)
         self.assertEqual(response_dict["description"], event.description)
 
@@ -56,7 +58,7 @@ class CreateEventTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-        self.assertIn("name", response_dict.keys())
+        self.assertIn("title", response_dict.keys())
         self.assertIn("date", response_dict.keys())
     
     def test_should_not_create_event_without_permission(self):
@@ -66,6 +68,7 @@ class CreateEventTest(APITestCase):
 
         response      = self.client.post('/api/events/', self.event_data)
         response_dict = response.json()
+        print(response_dict)
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 

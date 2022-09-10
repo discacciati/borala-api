@@ -5,17 +5,23 @@ from events.models import Event
 from line_up.models import LineUp
 
 class LineupListOneTest(APITestCase):
-    fixtures = ["event-fixture.json", "lineup-fixture.json"]
+    fixtures = [
+        'user-fixture.json',
+        'event-fixture.json', 
+        'address-fixture.json', 
+        'category-fixture.json', 
+        'lineup-fixture.json'
+    ]
 
     @classmethod
     def setUpTestData(cls):
-        cls.event  = Event.objects.all()[0]
+        cls.event  = Event.objects.all()[1]
         cls.lineup = LineUp.objects.filter(event_id=cls.event.id)[0]
 
         cls.client = APIClient()
     
     def test_should_list_single_lineup(self):
-        response      = self.client.get(f"/api/events/{self.event.id}/lineup/{self.lineup.id}")
+        response      = self.client.get(f"/api/events/{self.event.id}/lineup/{self.lineup.id}/")
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)

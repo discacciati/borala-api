@@ -8,7 +8,13 @@ from events.models import Event
 from reviews.models import Review
 
 class CreateReviewTest(APITestCase):
-    fixtures = ['user-fixture.json', 'event-fixture.json']
+    fixtures = [
+        'user-fixture.json',
+        'event-fixture.json', 
+        'address-fixture.json', 
+        'category-fixture.json', 
+        'review-fixture.json'
+    ]
 
     @classmethod
     def setUpTestData(cls):
@@ -40,7 +46,6 @@ class CreateReviewTest(APITestCase):
         self.assertEqual(response_dict["rating"], self.review_data["rating"])
 
         self.assertEqual(response_dict["title"], review.title)
-        self.assertEqual(response_dict["hour"], review.hour)
         self.assertEqual(response_dict["description"], review.description)
         self.assertEqual(response_dict["rating"], review.rating)
 

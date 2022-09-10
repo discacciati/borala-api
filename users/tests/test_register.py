@@ -30,7 +30,11 @@ class RegisterTest(APITestCase):
         cls.client = APIClient()
     
     def test_should_create_user(self):
-        response      = self.client.post('/api/register/', self.user_data)
+        try:
+            response = self.client.post('/api/register/', self.promoter_data)
+        except Exception as e:
+            self.fail(f"Creation failed with error:{str(e)}")
+            
         response_dict = response.json()
         user          = User.objects.get(id=response_dict["id"])
 
@@ -52,7 +56,11 @@ class RegisterTest(APITestCase):
         self.assertTrue(check_password(self.user_data["password"], user.password))
 
     def test_should_create_promoter(self):
-        response      = self.client.post('/api/users/', self.promoter_data)
+        try:
+            response = self.client.post('/api/register/', self.promoter_data)
+        except Exception as e:
+            self.fail(f"Creation failed with error:{str(e)}")
+
         response_dict = response.json()
         user          = User.objects.get(id=response_dict["id"])
 
