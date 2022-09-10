@@ -7,7 +7,13 @@ from events.models import Event
 from reviews.models import Review
 
 class EventPatchTest(APITestCase):
-    fixtures = ["user-fixture.json", "event-fixture.json", "review-fixture.json"]
+    fixtures = [
+        'user-fixture.json',
+        'event-fixture.json', 
+        'address-fixture.json', 
+        'category-fixture.json', 
+        'review-fixture.json'
+    ]
 
     @classmethod
     def setUpTestData(cls):
@@ -18,15 +24,15 @@ class EventPatchTest(APITestCase):
         cls.review        = review_list[0]
         cls.second_review = review_list[1]
         cls.owner         = User.objects.get(id=cls.review.user.id)
-        cls.other_user    = User.objects.filter(id=cls.review.user.id, exclude=True)[0]
+        cls.other_user    = User.objects.all().exclude(id=cls.review.user.id,)[0]
 
         cls.review_patch_info = {
             "title":"Show do Luan Santana",
-            "rating":5,
+            "rating":3,
         }
 
         cls.previous_data = {
-            "name": cls.review.name,
+            "title": cls.review.title,
             "rating": cls.review.rating
         }
 
@@ -44,12 +50,12 @@ class EventPatchTest(APITestCase):
         self.assertIn('detail', response_dict.keys())
 
         try:
-            database_review = Review.objects.get(self.second_review.id)
+            database_review = Review.objects.get(id=self.second_review.id)
         except:
             self.fail("Patch should not delete object")
 
-        self.assertNotEqual(database_review.name, self.review_patch_info["name"])
-        self.assertNotEqual(database_review.is_active, self.review_patch_info["is_active"])
+        self.assertNotEqual(database_review.title, self.review_patch_info["title"])
+        self.assertNotEqual(database_review.rating, self.review_patch_info["rating"])
 
     def test_should_not_accept_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')
@@ -61,7 +67,7 @@ class EventPatchTest(APITestCase):
         self.assertIn('detail', response_dict.keys())
 
         try:
-            database_review = Review.objects.get(self.second_review.id)
+            database_review = Review.objects.get(id=self.second_review.id)
         except:
             self.fail("Patch should not delete object")
 
@@ -79,7 +85,7 @@ class EventPatchTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)        
 
         try:
-            database_review = Review.objects.get(self.second_review.id)
+            database_review = Review.objects.get(id=self.second_review.id)
         except:
             self.fail("Patch should not delete object")
 

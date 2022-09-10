@@ -6,19 +6,25 @@ from users.models import User
 from events.models import Event
 from line_up.models import LineUp
 
-class EventPatchTest(APITestCase):
-    fixtures = ["user-fixture.json", "event-fixture.json", "lineup-fixture.json"]
+class LineupPatchTest(APITestCase):
+    fixtures = [
+        'user-fixture.json',
+        'event-fixture.json', 
+        'address-fixture.json', 
+        'category-fixture.json', 
+        'lineup-fixture.json'
+    ]
 
     @classmethod
     def setUpTestData(cls):
-        event       = Event.objects.all()[0]
+        event       = Event.objects.all()[2]
         lineup_list = LineUp.objects.filter(event_id=event.id)
         
         cls.event         = event
         cls.lineup        = lineup_list[0]
         cls.second_lineup = lineup_list[1]
         cls.owner         = User.objects.get(id=cls.event.user.id)
-        cls.other_user    = User.objects.get(is_promoter=False)
+        cls.other_user    = User.objects.filter(is_promoter=False)[0]
 
         cls.lineup_patch_info = {
             "title":"Show do Luan Santana",
@@ -26,7 +32,7 @@ class EventPatchTest(APITestCase):
         }
 
         cls.previous_data = {
-            "name": cls.lineup.name,
+            "title": cls.lineup.title,
             "is_active": cls.lineup.is_active
         }
 
@@ -37,7 +43,11 @@ class EventPatchTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response      = self.client.patch(f"/api/events/{self.event.id}/lineup/{self.second_lineup.id}/", self.lineup_patch_info)
+        try:
+            response = self.client.patch(f"/api/events/{self.event.id}/lineup/{self.lineup.id}/")
+        except Exception as e:
+            self.fail(f'deletion is failing with message: {str(e)}')
+
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)        
@@ -48,13 +58,17 @@ class EventPatchTest(APITestCase):
         except:
             self.fail("Patch should not delete object")
 
-        self.assertNotEqual(database_lineup.name, self.lineup_patch_info["name"])
+        self.assertNotEqual(database_lineup.title, self.lineup_patch_info["title"])
         self.assertNotEqual(database_lineup.is_active, self.lineup_patch_info["is_active"])
 
     def test_should_not_accept_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')
 
-        response      = self.client.patch(f"/api/events/{self.event.id}/lineup/{self.second_lineup.id}/", self.lineup_patch_info)
+        try:
+            response = self.client.patch(f"/api/events/{self.event.id}/lineup/{self.lineup.id}/")
+        except Exception as e:
+            self.fail(f'Patch is failing with message: {str(e)}')
+
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)        
@@ -65,7 +79,11 @@ class EventPatchTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response      = self.client.patch(f"/api/events/{self.event.id}/lineup/{self.lineup.id}/", self.lineup_patch_info)
+        try:
+            response = self.client.patch(f"/api/events/{self.event.id}/lineup/{self.lineup.id}/")
+        except Exception as e:
+            self.fail(f'Patch is failing with message: {str(e)}')
+
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)        

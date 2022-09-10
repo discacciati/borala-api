@@ -41,9 +41,8 @@ class EventDetailedSerializer(serializers.ModelSerializer):
         event: Event = Event.objects.create(**validated_data, address=address)
 
         for category in categories_data:
-            print(category)
-            category_created, _ = Category.objects.get_or_create(**category)
-
+            category_created,_ = Category.objects.get_or_create(**category)
+            
             event.categories.add(category_created)
             event.save()
 

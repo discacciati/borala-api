@@ -1,5 +1,6 @@
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
+from rest_framework.authtoken.models import Token
 
 from users.models import User
 
@@ -9,11 +10,16 @@ class UserListTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.users_list = User.objects.all()
+        cls.admin_user = User.objects.filter(is_superuser=True)[0]
         cls.users_len  = len(cls.users_list)
 
         cls.client = APIClient()
     
     def test_should_list_all_users(self):
+        token,_ = Token.objects.get_or_create(user_id=self.admin_user.id)
+
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+
         response      = self.client.get("/api/users/")
         response_list = response.json()
         response_dict = {response_list[i]["id"]:resp for i,resp in enumerate(response_list)}
