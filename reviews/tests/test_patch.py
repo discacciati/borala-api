@@ -50,7 +50,7 @@ class EventPatchTest(APITestCase):
         self.assertIn('detail', response_dict.keys())
 
         try:
-            database_review = Review.objects.get(self.second_review.id)
+            database_review = Review.objects.get(id=self.second_review.id)
         except:
             self.fail("Patch should not delete object")
 
@@ -67,7 +67,7 @@ class EventPatchTest(APITestCase):
         self.assertIn('detail', response_dict.keys())
 
         try:
-            database_review = Review.objects.get(self.second_review.id)
+            database_review = Review.objects.get(id=self.second_review.id)
         except:
             self.fail("Patch should not delete object")
 
@@ -85,7 +85,7 @@ class EventPatchTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)        
 
         try:
-            database_review = Review.objects.get(self.second_review.id)
+            database_review = Review.objects.get(id=self.second_review.id)
         except:
             self.fail("Patch should not delete object")
 

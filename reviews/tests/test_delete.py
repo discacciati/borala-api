@@ -36,6 +36,11 @@ class DeleteReviewTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)        
         self.assertIn('detail', response_dict.keys())
+        
+        try:
+            Review.objects.get(id=self.review.id)
+        except:
+            self.fail('Review should not be deleted')
 
 
     def test_should_not_accept_invalid_token(self):
@@ -46,6 +51,11 @@ class DeleteReviewTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)        
         self.assertIn('detail', response_dict.keys())
+
+        try:
+            Review.objects.get(id=self.review.id)
+        except:
+            self.fail('Review should not be deleted')
     
     def test_should_delete_review_with_admin_token(self):
         token,_ = Token.objects.get_or_create(user_id=self.admin_user.id)
@@ -53,9 +63,10 @@ class DeleteReviewTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
         response = self.client.delete(f"/api/events/{self.event.id}/lineup/{self.review.id}/")
+        print(response.json())
         
         try:
-            Review.objects.get(id=self.event.id)
+            Review.objects.get(id=self.review.id)
         except:
             self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
@@ -67,7 +78,7 @@ class DeleteReviewTest(APITestCase):
         response = self.client.delete(f"/api/events/{self.event.id}/reviews/{self.review.id}/")
         
         try:
-            Review.objects.get(id=self.event.id)
+            Review.objects.get(id=self.review.id)
         except:
             self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 

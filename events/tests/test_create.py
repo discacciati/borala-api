@@ -15,10 +15,25 @@ class CreateEventTest(APITestCase):
         cls.promoter   = User.objects.filter(is_promoter=True)[0]
         cls.other_user = User.objects.filter(is_promoter=False)[0]
 
+        cls.event_data_no_address = {
+            "title":"festa no ape",
+            "date":"2022-09-07",
+            "description":"vai rolar bunda-lele",
+        }
+
         cls.event_data = {
             "title":"festa no ape",
             "date":"2022-09-07",
             "description":"vai rolar bunda-lele",
+            "address": {
+		        "state": "BA",
+                "city": "Salvador",
+                "postal_code": "64260-000",
+                "street": "Antenor de Araujo Freitas",
+                "district": "Centro",
+                "number": 1905
+            },
+            "categories": [{"name":"Show"}],
         }
 
         cls.client = APIClient()
@@ -28,14 +43,14 @@ class CreateEventTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response      = self.client.post('/api/events/', self.event_data)
+        response = self.client.post('/api/events/', self.event_data, format='json')
+
         response_dict = response.json()
-        print(response_dict)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(uuid.UUID(response_dict["id"]))
 
-        event         = Event.objects.get(id=response_dict["id"])
+        event = Event.objects.get(id=response_dict["id"])
 
         self.assertEqual(response_dict["title"], self.event_data["title"])
         self.assertEqual(response_dict["date"], self.event_data["date"])
@@ -66,7 +81,8 @@ class CreateEventTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response      = self.client.post('/api/events/', self.event_data)
+        response = self.client.post('/api/events/', self.event_data, format='json')
+
         response_dict = response.json()
         print(response_dict)
 
@@ -75,7 +91,9 @@ class CreateEventTest(APITestCase):
         self.assertIn("detail", response_dict.keys())
     
     def test_should_not_create_event_without_token(self):
-        response      = self.client.post('/api/events/', self.event_data)
+
+        response = self.client.post('/api/events/', self.event_data, format='json')
+
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
