@@ -22,6 +22,9 @@ class ReviewView(serializerByMethodMixin, generics.ListCreateAPIView):
         "POST": ReviewDetailSerializer,
     }
 
+    def get_queryset(self):
+        return Review.objects.filter(event_id=self.kwargs["event_id"])
+
     def perform_create(self, serializer):
         event_id = self.kwargs["event_id"]
         event = Event.objects.get(id=event_id)

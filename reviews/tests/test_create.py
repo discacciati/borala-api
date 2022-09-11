@@ -24,7 +24,7 @@ class CreateReviewTest(APITestCase):
         cls.review_data = {
             "title":"Show da Daniela Mercury",
             "description":"Daniela faz seu primeiro show em...",
-            "rating":10,
+            "rating":5,
         }
 
         cls.client = APIClient()
