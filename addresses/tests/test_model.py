@@ -1,9 +1,8 @@
 from uuid import UUID
-
 from django.test import TestCase
 from rest_framework.exceptions import ValidationError
 
-from ..models import Address
+from addresses.models import Address
 
 
 class ModelTest(TestCase):
@@ -41,14 +40,14 @@ class ModelTest(TestCase):
         self.assertEqual(self.address.street, self.address_data["street"])
         self.assertEqual(self.address.district, self.address_data["district"])
         self.assertEqual(self.address.number, self.address_data["number"])
-        self.assertTrue(UUID(self.address.id))
+        self.assertTrue(UUID(str(self.address.id)))
 
     def test_fields_should_have_max_length(self):
-        state_max_length = self.seller_1._meta.get_field("state").max_length
-        city_max_length = self.seller_1._meta.get_field("city").max_length
-        postal_code_max_length = self.seller_1._meta.get_field("postal_code").max_length
-        street_max_length = self.seller_1._meta.get_field("street").max_length
-        district_max_length = self.seller_1._meta.get_field("district").max_length
+        state_max_length = self.address._meta.get_field("state").max_length
+        city_max_length = self.address._meta.get_field("city").max_length
+        postal_code_max_length = self.address._meta.get_field("postal_code").max_length
+        street_max_length = self.address._meta.get_field("street").max_length
+        district_max_length = self.address._meta.get_field("district").max_length
 
         self.assertEqual(state_max_length, 2)
         self.assertEqual(city_max_length, 50)

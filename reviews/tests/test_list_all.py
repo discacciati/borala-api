@@ -5,7 +5,13 @@ from events.models import Event
 from reviews.models import Review
 
 class ReviewListTest(APITestCase):
-    fixtures = ["event-fixture.json", "review-fixture.json"]
+    fixtures = [
+        'user-fixture.json',
+        'event-fixture.json', 
+        'address-fixture.json', 
+        'category-fixture.json', 
+        'review-fixture.json'
+    ]
 
     @classmethod
     def setUpTestData(cls):

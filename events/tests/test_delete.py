@@ -6,13 +6,19 @@ from users.models import User
 from events.models import Event
 
 class DeleteEventTest(APITestCase):
-    fixtures = ["user-fixture.json", "event-fixture.json"]
+    fixtures = [
+        "user-fixture.json",   
+        "event-fixture.json", 
+        "address-fixture.json", 
+        "category-fixture.json",
+        "lineup-fixture.json"
+    ]
 
     @classmethod
     def setUpTestData(cls):
         cls.event      = Event.objects.all()[0]
-        cls.admin_user = User.objects.get(is_superuser=True)
-        cls.user       = User.objects.get(is_staff=False)
+        cls.admin_user = User.objects.filter(is_superuser=True)[0]
+        cls.user       = User.objects.filter(is_staff=False)[0]
 
         cls.client = APIClient()
     
@@ -41,10 +47,13 @@ class DeleteEventTest(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
-        response = self.client.delete(f"/api/events/{self.event.id}/")
+        try:
+            response = self.client.delete(f"/api/events/{self.event.id}/")
+        except Exception as e:
+            self.fail(f'deletion is failing with message: {str(e)}')
         
         try:
-            User.objects.get(id=self.event.id)
+            Event.objects.get(id=self.event.id)
         except:
             self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
