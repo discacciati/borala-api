@@ -27,8 +27,7 @@ class EventDetailedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-
-        read_only_fields = ["id", "is_superuser", "is_promoter", "line_up"]
+        read_only_fields = ["id", "is_superuser", "is_promoter", "line_up", "categories"]
         exclude = ["user"]
         depth = 1
 
