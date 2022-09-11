@@ -13,7 +13,7 @@ from .models import Event
 class EventSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(read_only=True, many=True)
     address = AddressSerializer(read_only=True)
-    line_up = LineupSerializer(read_only=True, many=True)
+    lineup = LineupSerializer(read_only=True, many=True)
 
     class Meta:
         model = Event
@@ -24,7 +24,7 @@ class EventSerializer(serializers.ModelSerializer):
 class EventDetailedSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
     address = AddressSerializer()
-    line_up = LineupSerializer(read_only=True, many=True)
+    lineup = LineupSerializer(read_only=True, many=True)
 
     class Meta:
         model = Event
