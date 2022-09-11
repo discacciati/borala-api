@@ -30,7 +30,7 @@ class ReviewRelationTest(APITestCase):
         review_event = self.review.event
         db_event     = Event.objects.get(id=review_event.id)
 
-        self.assertEqual(self.review.id, db_event.id)
+        self.assertEqual(str(self.review.id), str(db_event.id))
 
         self.assertEqual(review_event.name, db_event.name)
         self.assertEqual(review_event.description, db_event.description)
