@@ -16,8 +16,6 @@ class IsOwnerPermission(permissions.BasePermission):
 
 class IsSuperUserMethodOrOwner(permissions.BasePermission):
     def has_object_permission(self, request, view: View, obj: User):
-        print(request.user.is_superuser, request.method)
-
         if request.method in view.admin_methods and request.user.is_superuser:
             return True
 

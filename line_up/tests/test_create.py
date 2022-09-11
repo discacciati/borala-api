@@ -8,17 +8,17 @@ from events.models import Event
 from line_up.models import LineUp
 
 class CreateLineupTest(APITestCase):
-    fixtures = ['user-fixture.json', 'event-fixture.json']
+    fixtures = ['user-fixture.json', 'event-fixture.json', 'address-fixture.json', 'category-fixture.json']
 
     @classmethod
     def setUpTestData(cls):
         cls.event      = Event.objects.all()[0]
         cls.promoter   = User.objects.get(id=cls.event.user.id)
-        cls.other_user = User.objects.get(is_promoter=False)
+        cls.other_user = User.objects.filter(is_promoter=False)[0]
 
         cls.lineup_data = {
             "title":"Show da Daniela Mercury",
-            "hour":"19:00",
+            "hour":"19:00:00",
             "description":"Daniela faz seu primeiro show em...",
             "talent":"Daniela Mercury",
         }
@@ -43,7 +43,7 @@ class CreateLineupTest(APITestCase):
         self.assertEqual(response_dict["talent"], self.lineup_data["talent"])
 
         self.assertEqual(response_dict["title"], lineup.title)
-        self.assertEqual(response_dict["hour"], lineup.hour)
+        self.assertEqual(response_dict["hour"], str(lineup.hour))
         self.assertEqual(response_dict["description"], lineup.description)
         self.assertEqual(response_dict["talent"], lineup.talent)
 

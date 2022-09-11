@@ -4,7 +4,7 @@ from rest_framework.views import status
 from events.models import Event
 
 class EventListTest(APITestCase):
-    fixtures = ["event-fixture.json"]
+    fixtures = ["user-fixture.json", "event-fixture.json", "address-fixture.json", "category-fixture.json"]
 
     @classmethod
     def setUpTestData(cls):
@@ -26,6 +26,6 @@ class EventListTest(APITestCase):
             response_data = response_dict[id_string]
 
             self.assertEqual(response_data["id"], id_string)
-            self.assertEqual(response_data["name"], event.name)
-            self.assertEqual(response_data["date"], event.date)
+            self.assertEqual(response_data["title"], event.title)
+            self.assertEqual(response_data["date"], str(event.date))
             self.assertEqual(response_data["description"], event.description)

@@ -6,8 +6,8 @@ from users.models import User
 from events.models import Event
 
 
-class UserPatchTest(APITestCase):
-    fixtures = ["user-fixture.json", "event-fixture.json"]
+class EventPatchTest(APITestCase):
+    fixtures = ["user-fixture.json", "event-fixture.json", "address-fixture.json", "category-fixture.json"]
 
     @classmethod
     def setUpTestData(cls):
@@ -16,15 +16,15 @@ class UserPatchTest(APITestCase):
         cls.event        = Event.objects.all()[0]
         cls.second_event = Event.objects.all()[1]
         cls.owner        = User.objects.get(id=cls.event.user.id)
-        cls.other_user   = User.objects.all(is_promoter=False)
+        cls.other_user   = User.objects.filter(is_promoter=False)[0]
 
         cls.event_patch_info = {
-            "name":"Farra da boa",
+            "title":"Farra da boa",
             "is_active":False,
         }
 
         cls.previous_data = {
-            "name": cls.event.name,
+            "title": cls.event.title,
             "is_active": cls.event.is_active
         }
 
@@ -42,12 +42,12 @@ class UserPatchTest(APITestCase):
         self.assertIn('detail', response_dict.keys())
 
         try:
-            database_event = Event.objects.get(self.second_event.id)
-
-            self.assertEqual(database_event.name, self.previous_data["name"])
-            self.assertEqual(database_event.is_active, self.previous_data["is_active"])
+            database_event = Event.objects.get(id=self.second_event.id)
         except:
             self.fail("Patch should not delete object")
+
+        self.assertEqual(database_event.title, self.previous_data["title"])
+        self.assertEqual(database_event.is_active, self.previous_data["is_active"])
 
     def test_should_not_accept_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')
@@ -69,12 +69,12 @@ class UserPatchTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)        
 
         try:
-            database_event = Event.objects.get(self.second_event.id)
-
-            self.assertEqual(response_dict["name"], self.event_patch_info["name"])
-            self.assertEqual(response_dict["is_active"], self.event_patch_info["is_active"])
-
-            self.assertEqual(database_event.name, self.event_patch_info["name"])
-            self.assertEqual(database_event.is_active, self.event_patch_info["is_active"])
+            database_event = Event.objects.get(id=self.second_event.id)
         except:
             self.fail("Patch should not delete object")
+
+        self.assertEqual(response_dict["title"], self.event_patch_info["title"])
+        self.assertEqual(response_dict["is_active"], self.event_patch_info["is_active"])
+
+        self.assertEqual(database_event.title, self.event_patch_info["title"])
+        self.assertEqual(database_event.is_active, self.event_patch_info["is_active"])

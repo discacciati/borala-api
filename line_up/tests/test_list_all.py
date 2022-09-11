@@ -5,7 +5,13 @@ from events.models import Event
 from line_up.models import LineUp
 
 class LineupListTest(APITestCase):
-    fixtures = ["event-fixture.json", "lineup-fixture.json"]
+    fixtures = [
+        'user-fixture.json',
+        'event-fixture.json', 
+        'address-fixture.json', 
+        'category-fixture.json', 
+        'lineup-fixture.json'
+    ]
 
     @classmethod
     def setUpTestData(cls):

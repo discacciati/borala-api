@@ -8,12 +8,12 @@ class LoginTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.promoter_login_credentials = {
-            "username":"rani",
+            "username":"promoter",
             "password":"1234",
         }
 
         cls.user_login_credentials = {
-            "username":"chan",
+            "username":"comum",
             "password":"1234",
         }
 
@@ -21,7 +21,7 @@ class LoginTest(APITestCase):
 
     
     def test_should_login_user(self):
-        response       = self.client.post("/api/users/login/", self.user_login_credentials)
+        response       = self.client.post("/api/login/", self.user_login_credentials)
         response_dict  = response.json()
         response_token = response_dict["token"]
         user_token     = Token.objects.get(user__username=self.user_login_credentials["username"])
@@ -32,7 +32,7 @@ class LoginTest(APITestCase):
         self.assertEqual(response_token, user_token.key)
 
     def test_should_login_promoter(self):
-        response       = self.client.post("/api/users/login/", self.promoter_login_credentials)
+        response       = self.client.post("/api/login/", self.promoter_login_credentials)
         response_dict  = response.json()
         response_token = response_dict["token"]
         user_token     = Token.objects.get(user__username=self.promoter_login_credentials["username"])
@@ -43,7 +43,7 @@ class LoginTest(APITestCase):
         self.assertEqual(response_token, user_token.key)
     
     def test_should_block_invalid_credentials(self):
-        response      = self.client.post("/api/users/login/", {})
+        response      = self.client.post("/api/login/", {})
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
