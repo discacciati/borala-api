@@ -1,6 +1,6 @@
 from uuid import UUID
 from django.test import TestCase
-from rest_framework.exceptions import ValidationError
+from django.db.utils import IntegrityError
 
 from addresses.models import Address
 
@@ -59,6 +59,7 @@ class ModelTest(TestCase):
         invalid_number_data = {**self.address_data}
         invalid_number_data["number"] = -4
 
-        with self.assertRaises(ValidationError):
-            address = Address(**invalid_number_data)
-            address.full_clean()
+        with self.assertRaises(IntegrityError):
+            Address.objects.create(**invalid_number_data)
+            
+
