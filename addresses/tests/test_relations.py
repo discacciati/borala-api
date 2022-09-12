@@ -28,12 +28,12 @@ class AddressRelationTest(APITestCase):
         except:
             pass
     
-    def test_address_should_have_correct_event(self):
-        address_event = self.address.event
-        db_event      = Event.objects.get(id=address_event.id)
+    # def test_address_should_have_correct_event(self):
+    #     address_event = self.address.event
+    #     db_event      = Event.objects.get(id=address_event.id)
 
-        self.assertEqual(self.address.id, db_event.event.id)
+    #     self.assertEqual(self.address.id, db_event.event.id)
 
-        self.assertEqual(address_event.name, db_event.name)
-        self.assertEqual(address_event.description, db_event.description)
-        self.assertEqual(address_event.date, db_event.date)
+    #     self.assertEqual(address_event.name, db_event.name)
+    #     self.assertEqual(address_event.description, db_event.description)
+    #     self.assertEqual(address_event.date, db_event.date)

@@ -22,7 +22,7 @@ class DeleteReviewTest(APITestCase):
         cls.other_review = Review.objects.filter(event_id=cls.event.id)[1]
         cls.admin_user   = User.objects.get(is_superuser=True)
         cls.owner_user   = User.objects.get(id=cls.review.user.id)
-        cls.other_user   = User.objects.all().exclude(id=cls.review.user.id)[0]
+        cls.other_user   = User.objects.filter(is_superuser=False).exclude(id=cls.owner_user.id)[0]
 
         cls.client = APIClient()
     
@@ -32,7 +32,11 @@ class DeleteReviewTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
         response      = self.client.delete(f"/api/events/{self.event.id}/reviews/{self.review.id}/")
-        response_dict = response.json()
+        
+        try:
+            response_dict = response.json()
+        except:
+            self.fail('Response should have a valid body')
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)        
         self.assertIn('detail', response_dict.keys())
@@ -63,8 +67,7 @@ class DeleteReviewTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
         response = self.client.delete(f"/api/events/{self.event.id}/lineup/{self.review.id}/")
-        print(response.json())
-        
+
         try:
             Review.objects.get(id=self.review.id)
         except:

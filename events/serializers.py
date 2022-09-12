@@ -11,8 +11,9 @@ from .models import Event
 
 
 class EventSerializer(serializers.ModelSerializer):
-    categories = CategorySerializer(read_only=True)
+    categories = CategorySerializer(read_only=True, many=True)
     address = AddressSerializer(read_only=True)
+    lineup = LineupSerializer(read_only=True, many=True)
 
     class Meta:
         model = Event
@@ -23,12 +24,11 @@ class EventSerializer(serializers.ModelSerializer):
 class EventDetailedSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
     address = AddressSerializer()
-    line_up = LineupSerializer(read_only=True)
+    lineup = LineupSerializer(read_only=True, many=True)
 
     class Meta:
         model = Event
-
-        read_only_fields = ["id", "is_superuser", "is_promoter", "line_up"]
+        read_only_fields = ["id", "is_superuser", "is_promoter", "line_up", "categories"]
         exclude = ["user"]
         depth = 1
 

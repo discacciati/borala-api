@@ -12,7 +12,7 @@ class ReviewRelationTest(APITestCase):
         cls.new_review_data = {
             "title":"Show da Daniela Mercury",
             "description":"Daniela faz seu primeiro show em...",
-            "rating":10,
+            "rating":5,
         }
 
         cls.review_serializer = ReviewSerializer(data=cls.new_review_data)
@@ -30,9 +30,9 @@ class ReviewRelationTest(APITestCase):
         review_event = self.review.event
         db_event     = Event.objects.get(id=review_event.id)
 
-        self.assertEqual(self.review.id, db_event.id)
+        self.assertEqual(review_event.id, db_event.id)
 
-        self.assertEqual(review_event.name, db_event.name)
+        self.assertEqual(review_event.title, db_event.title)
         self.assertEqual(review_event.description, db_event.description)
         self.assertEqual(review_event.date, db_event.date)
 
@@ -42,7 +42,7 @@ class ReviewRelationTest(APITestCase):
 
         self.assertEqual(review_user.id, db_user.id)
 
-        self.assertEqual(review_user.username, db_user.first_name)
+        self.assertEqual(review_user.username, db_user.username)
         self.assertEqual(review_user.first_name, db_user.first_name)
         self.assertEqual(review_user.last_name, db_user.last_name)
         self.assertEqual(review_user.email, db_user.email)
