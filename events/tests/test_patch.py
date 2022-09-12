@@ -46,8 +46,8 @@ class EventPatchTest(APITestCase):
         except:
             self.fail("Patch should not delete object")
 
-        self.assertEqual(database_event.title, self.previous_data["title"])
-        self.assertEqual(database_event.is_active, self.previous_data["is_active"])
+        self.assertNotEqual(database_event.title, self.event_patch_info["title"])
+        self.assertNotEqual(database_event.is_active, self.event_patch_info["is_active"])
 
     def test_should_not_accept_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token 1234')
@@ -69,7 +69,7 @@ class EventPatchTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)        
 
         try:
-            database_event = Event.objects.get(id=self.second_event.id)
+            database_event = Event.objects.get(id=self.event.id)
         except:
             self.fail("Patch should not delete object")
 
