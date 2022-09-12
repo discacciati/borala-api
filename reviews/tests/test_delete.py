@@ -22,7 +22,7 @@ class DeleteReviewTest(APITestCase):
         cls.other_review = Review.objects.filter(event_id=cls.event.id)[1]
         cls.admin_user   = User.objects.get(is_superuser=True)
         cls.owner_user   = User.objects.get(id=cls.review.user.id)
-        cls.other_user   = User.objects.all().exclude(is_superuser=True).exclude(id=cls.owner_user.id)[0]
+        cls.other_user   = User.objects.filter(is_superuser=False).exclude(id=cls.owner_user.id)[0]
 
         cls.client = APIClient()
     
