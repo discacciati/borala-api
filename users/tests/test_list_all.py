@@ -21,7 +21,7 @@ class UserListTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
         response = self.client.get("/api/users/")
-        response_list = response.json()
+        response_list = response.json()["results"]
         response_dict = {
             response_list[i]["id"]: resp for i, resp in enumerate(response_list)
         }

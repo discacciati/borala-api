@@ -23,7 +23,7 @@ class ReviewListTest(APITestCase):
 
     def test_should_list_all_reviews(self):
         response = self.client.get(f"/api/events/{self.event.id}/reviews/")
-        response_list = response.json()
+        response_list = response.json()["results"]
         response_dict = {
             response_list[i]["id"]: resp for i, resp in enumerate(response_list)
         }
