@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
             "is_promoter",
             "is_superuser",
         ]
-        read_only_fields = ["id", "is_promoter", "is_superuser"]
+        read_only_fields = ["id", "is_superuser"]
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
