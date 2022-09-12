@@ -22,18 +22,12 @@ class EventSerializer(serializers.ModelSerializer):
 class EventDetailedSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
     address = AddressSerializer()
-    lineup = LineupSerializer(read_only=True, many=True)
+    
 
     class Meta:
         model = Event
-        read_only_fields = [
-            "id",
-            "is_superuser",
-            "is_promoter",
-            "line_up",
-            "categories",
-        ]
-        exclude = ["user"]
+        fields = ["id","title", "date", "description", "price", "sponsor", "is_active", "categories", "address", "user_id" ]
+        read_only_fields = ["id", "lineup", "categories"]
         depth = 1
 
     def create(self, validated_data: dict):
