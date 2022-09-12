@@ -8,6 +8,4 @@ class CustomProductPermission(permissions.BasePermission):
         if request.method == "DELETE" and request.user.is_superuser:
             return True
 
-        return request.method in permissions.SAFE_METHODS or (
-            obj.user == request.user or request.user.is_superuser
-        )
+        return request.method in permissions.SAFE_METHODS or (request.user == obj.user)
