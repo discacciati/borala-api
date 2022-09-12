@@ -2,6 +2,7 @@ from events.models import Event
 from line_up.models import LineUp
 from rest_framework.test import APIClient, APITestCase
 from rest_framework.views import status
+from django.db.models import Count
 
 
 class LineupListTest(APITestCase):
@@ -15,15 +16,15 @@ class LineupListTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.event = Event.objects.all()[0]
+        cls.event       = Event.objects.annotate(lineup_count=Count('lineup')).filter(lineup_count__gt=0)[0]
         cls.lineup_list = LineUp.objects.filter(event_id=cls.event.id)
-        cls.lineup_len = len(cls.lineup_list)
+        cls.lineup_len  = len(cls.lineup_list)
 
         cls.client = APIClient()
 
     def test_should_list_whole_lineup(self):
         response = self.client.get(f"/api/events/{self.event.id}/lineup/")
-        response_list = response.json()
+        response_list = response.json()['results']
         response_dict = {
             response_list[i]["id"]: resp for i, resp in enumerate(response_list)
         }
@@ -36,6 +37,6 @@ class LineupListTest(APITestCase):
             response_data = response_dict[id_string]
 
             self.assertEqual(response_data["title"], lineup.title)
-            self.assertEqual(response_data["hour"], lineup.hour)
+            self.assertEqual(response_data["hour"], str(lineup.hour))
             self.assertEqual(response_data["description"], lineup.description)
             self.assertEqual(response_data["talent"], lineup.talent)

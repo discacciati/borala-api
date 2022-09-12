@@ -56,7 +56,7 @@ class LineupPatchTest(APITestCase):
         self.assertIn("detail", response_dict.keys())
 
         try:
-            database_lineup = LineUp.objects.get(self.second_lineup.id)
+            database_lineup = LineUp.objects.get(id=self.lineup.id)
         except:
             self.fail("Patch should not delete object")
 
@@ -87,26 +87,28 @@ class LineupPatchTest(APITestCase):
 
         try:
             response = self.client.patch(
-                f"/api/events/{self.event.id}/lineup/{self.lineup.id}/"
+                f"/api/events/{self.event.id}/lineup/{self.lineup.id}/",
+                self.lineup_patch_info
             )
         except Exception as e:
             self.fail(f"Patch is failing with message: {str(e)}")
 
         response_dict = response.json()
+        print(response_dict)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         try:
-            database_lineup = LineUp.objects.get(self.second_lineup.id)
-
-            self.assertEqual(response_dict["title"], self.lineup_patch_info["title"])
-            self.assertEqual(
-                response_dict["is_active"], self.lineup_patch_info["is_active"]
-            )
-
-            self.assertEqual(database_lineup.title, self.lineup_patch_info["title"])
-            self.assertEqual(
-                database_lineup.is_active, self.lineup_patch_info["is_active"]
-            )
+            database_lineup = LineUp.objects.get(id=self.lineup.id)
         except:
             self.fail("Patch should not delete object")
+
+        self.assertEqual(response_dict["title"], self.lineup_patch_info["title"])
+        self.assertEqual(
+            response_dict["is_active"], self.lineup_patch_info["is_active"]
+        )
+
+        self.assertEqual(database_lineup.title, self.lineup_patch_info["title"])
+        self.assertEqual(
+            database_lineup.is_active, self.lineup_patch_info["is_active"]
+        )

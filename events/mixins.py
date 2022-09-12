@@ -23,6 +23,5 @@ class FilterByQueryParamsMixin:
         if len(query_params.keys()) > 0:
             lookup_dict = self.get_query_options(query_params)
             queryset    = model.objects.filter(**lookup_dict)
-            print(queryset)
             
         return queryset
