@@ -1,3 +1,4 @@
+from events.models import Event
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -5,7 +6,6 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import LineUp
 from .permissions import IsOwnerOrReadOnly
 from .serializers import LineupDetailSerializer, LineupSerializer
-from events.models import Event
 
 
 class LineupView(generics.ListCreateAPIView):
@@ -14,6 +14,9 @@ class LineupView(generics.ListCreateAPIView):
 
     queryset = LineUp.objects.all()
     serializer_class = LineupSerializer
+
+    def get_queryset(self):
+       return LineUp.objects.filter(event_id = self.kwargs["event_id"])
 
     def perform_create(self, serializer):
         event_id = self.kwargs["event_id"]
