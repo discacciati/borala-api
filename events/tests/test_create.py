@@ -84,7 +84,7 @@ class CreateEventTest(APITestCase):
         response = self.client.post('/api/events/', self.event_data, format='json')
 
         response_dict = response.json()
-
+        
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         self.assertIn("detail", response_dict.keys())
