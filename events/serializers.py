@@ -7,8 +7,6 @@ from rest_framework import serializers
 
 from .models import Event
 
-### retirar usuarios no retorno do post
-
 
 class EventSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(read_only=True, many=True)
@@ -24,12 +22,12 @@ class EventSerializer(serializers.ModelSerializer):
 class EventDetailedSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
     address = AddressSerializer()
-    lineup = LineupSerializer(read_only=True, many=True)
+    
 
     class Meta:
         model = Event
-        read_only_fields = ["id", "is_superuser", "is_promoter", "line_up", "categories"]
-        exclude = ["user"]
+        fields = ["id","title", "date", "description", "price", "sponsor", "is_active", "categories", "address", "user_id" ]
+        read_only_fields = ["id", "lineup", "categories"]
         depth = 1
 
     def create(self, validated_data: dict):
@@ -41,8 +39,8 @@ class EventDetailedSerializer(serializers.ModelSerializer):
         event: Event = Event.objects.create(**validated_data, address=address)
 
         for category in categories_data:
-            category_created,_ = Category.objects.get_or_create(**category)
-            
+            category_created, _ = Category.objects.get_or_create(**category)
+
             event.categories.add(category_created)
             event.save()
 

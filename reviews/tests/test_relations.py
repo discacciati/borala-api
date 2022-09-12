@@ -1,23 +1,24 @@
-from rest_framework.test import APITestCase
 from events.models import Event
+from rest_framework.test import APITestCase
 from reviews.models import Review
-from users.models   import User
 from reviews.serializers import ReviewSerializer
+from users.models import User
+
 
 class ReviewRelationTest(APITestCase):
-    fixtures = ['borala.json']
+    fixtures = ["borala.json"]
 
     @classmethod
     def setUpTestData(cls) -> None:
         cls.new_review_data = {
-            "title":"Show da Daniela Mercury",
-            "description":"Daniela faz seu primeiro show em...",
-            "rating":5,
+            "title": "Show da Daniela Mercury",
+            "description": "Daniela faz seu primeiro show em...",
+            "rating": 5,
         }
 
         cls.review_serializer = ReviewSerializer(data=cls.new_review_data)
-        cls.review            = Review.objects.all()[0]
-    
+        cls.review = Review.objects.all()[0]
+
     def test_should_not_create_review_without_user_or_event(self):
         try:
             self.review_serializer.is_valid(raise_exception=True)
@@ -25,10 +26,10 @@ class ReviewRelationTest(APITestCase):
             self.fail("review being saved without event or user")
         except:
             pass
-    
+
     def test_review_should_have_correct_event(self):
         review_event = self.review.event
-        db_event     = Event.objects.get(id=review_event.id)
+        db_event = Event.objects.get(id=review_event.id)
 
         self.assertEqual(review_event.id, db_event.id)
 
@@ -38,7 +39,7 @@ class ReviewRelationTest(APITestCase):
 
     def test_review_should_have_correct_user(self):
         review_user = self.review.user
-        db_user     = User.objects.get(id=review_user.id)
+        db_user = User.objects.get(id=review_user.id)
 
         self.assertEqual(review_user.id, db_user.id)
 

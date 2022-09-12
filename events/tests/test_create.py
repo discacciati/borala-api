@@ -1,49 +1,54 @@
 import uuid
-from rest_framework.test import APITestCase, APIClient
-from rest_framework.views import status
-from django.contrib.auth.hashers import check_password
-from rest_framework.authtoken.models import Token
 
-from users.models import User
 from events.models import Event
+from rest_framework.authtoken.models import Token
+from rest_framework.test import APIClient, APITestCase
+from rest_framework.views import status
+from users.models import User
+
 
 class CreateEventTest(APITestCase):
-    fixtures = ['user-fixture.json', 'event-fixture.json', 'address-fixture.json', 'category-fixture.json']
+    fixtures = [
+        "user-fixture.json",
+        "event-fixture.json",
+        "address-fixture.json",
+        "category-fixture.json",
+    ]
 
     @classmethod
     def setUpTestData(cls):
-        cls.promoter   = User.objects.filter(is_promoter=True)[0]
+        cls.promoter = User.objects.filter(is_promoter=True)[0]
         cls.other_user = User.objects.filter(is_promoter=False)[0]
 
         cls.event_data_no_address = {
-            "title":"festa no ape",
-            "date":"2022-09-07",
-            "description":"vai rolar bunda-lele",
+            "title": "festa no ape",
+            "date": "2022-09-07",
+            "description": "vai rolar bunda-lele",
         }
 
         cls.event_data = {
-            "title":"festa no ape",
-            "date":"2022-09-07",
-            "description":"vai rolar bunda-lele",
+            "title": "festa no ape",
+            "date": "2022-09-07",
+            "description": "vai rolar bunda-lele",
             "address": {
-		        "state": "BA",
+                "state": "BA",
                 "city": "Salvador",
                 "postal_code": "64260-000",
                 "street": "Antenor de Araujo Freitas",
                 "district": "Centro",
-                "number": 1905
+                "number": 1905,
             },
-            "categories": [{"name":"Show"}],
+            "categories": [{"name": "Show"}],
         }
 
         cls.client = APIClient()
-    
+
     def test_should_create_event(self):
-        token,_ = Token.objects.get_or_create(user_id=self.promoter.id)
+        token, _ = Token.objects.get_or_create(user_id=self.promoter.id)
 
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
-        response = self.client.post('/api/events/', self.event_data, format='json')
+        response = self.client.post("/api/events/", self.event_data, format="json")
 
         response_dict = response.json()
 
@@ -64,34 +69,34 @@ class CreateEventTest(APITestCase):
         self.assertTrue(event.is_active)
 
     def test_should_not_create_event_without_data(self):
-        token,_ = Token.objects.get_or_create(user_id=self.promoter.id)
+        token, _ = Token.objects.get_or_create(user_id=self.promoter.id)
 
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
-        response      = self.client.post('/api/events/', {})
+        response = self.client.post("/api/events/", {})
         response_dict = response.json()
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         self.assertIn("title", response_dict.keys())
         self.assertIn("date", response_dict.keys())
-    
+
     def test_should_not_create_event_without_permission(self):
-        token,_ = Token.objects.get_or_create(user_id=self.other_user.id)
+        token, _ = Token.objects.get_or_create(user_id=self.other_user.id)
 
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
-        response = self.client.post('/api/events/', self.event_data, format='json')
+        response = self.client.post("/api/events/", self.event_data, format="json")
 
         response_dict = response.json()
-        
+
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         self.assertIn("detail", response_dict.keys())
-    
+
     def test_should_not_create_event_without_token(self):
 
-        response = self.client.post('/api/events/', self.event_data, format='json')
+        response = self.client.post("/api/events/", self.event_data, format="json")
 
         response_dict = response.json()
 
