@@ -55,9 +55,6 @@ class CreateLineupTest(APITestCase):
         self.assertEqual(response_dict["description"], lineup.description)
         self.assertEqual(response_dict["talent"], lineup.talent)
 
-        self.assertTrue(response_dict["is_active"])
-        self.assertTrue(lineup.is_active)
-
     def test_should_not_create_lineup_without_data(self):
         token, _ = Token.objects.get_or_create(user_id=self.promoter.id)
 
