@@ -24,6 +24,12 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
+class UserReviewSerializeder(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "first_name"]
+
+
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
