@@ -1,12 +1,12 @@
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
-from .mixins import SerializerByMethodMixin
+from .mixins import FilterByQueryParamsMixin, SerializerByMethodMixin
 from .models import Event
 from .permissions import IsOwnerOrReadOnly, IsPromoterOrReadOnly
 from .serializers import EventDetailedSerializer, EventSerializer
 
 
-class EventView(SerializerByMethodMixin, generics.ListCreateAPIView):
+class EventView(FilterByQueryParamsMixin, SerializerByMethodMixin, generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsPromoterOrReadOnly]
 
@@ -15,6 +15,17 @@ class EventView(SerializerByMethodMixin, generics.ListCreateAPIView):
     serializer_map = {
         "GET": EventSerializer,
         "POST": EventDetailedSerializer,
+    }
+
+    querystring_map = {
+        'date':'date',
+        'title':'title__icontains',
+        'category':'category__name__iexact',
+        'state':'address__state__exact',
+        'city':'address__city__iexact',
+        'district':'address__district__iexact',
+        'lineup_title':'lineup__title__icontains',
+        'talent':'lineup__talent__icontains',
     }
 
     def perform_create(self, serializer):
