@@ -57,7 +57,7 @@ class CreateEventTest(APITestCase):
         self.assertEqual(response_dict["description"], self.event_data["description"])
 
         self.assertEqual(response_dict["title"], event.title)
-        self.assertEqual(response_dict["date"], event.date)
+        self.assertEqual(response_dict["date"], str(event.date))
         self.assertEqual(response_dict["description"], event.description)
 
         self.assertTrue(response_dict["is_active"])
