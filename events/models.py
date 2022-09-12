@@ -16,6 +16,6 @@ class Event(models.Model):
     user = models.ForeignKey(
         "users.user", on_delete=models.CASCADE, related_name="events"
     )
-    address = models.ForeignKey(
+    address = models.OneToOneField(
         "addresses.address", on_delete=models.CASCADE, related_name="event"
     )
