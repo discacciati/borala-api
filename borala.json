@@ -1,0 +1,423 @@
+[
+    {
+        "model": "addresses.address",
+        "pk": "4209551e-e73c-4c90-9a45-f663e1adc277",
+        "fields": {
+            "state": "RJ",
+            "city": "Lagoa de Março",
+            "postal_code": "64260-000",
+            "street": "Antenor de Araujo Freitas",
+            "district": "Centro",
+            "number": 1905
+        }
+    },
+    {
+        "model": "addresses.address",
+        "pk": "4e42e81d-3e0d-484f-bc73-d30f68247d76",
+        "fields": {
+            "state": "PR",
+            "city": "Cascavel",
+            "postal_code": "64260-000",
+            "street": "Antenor de Araujo Freitas",
+            "district": "Centro",
+            "number": 1905
+        }
+    },
+    {
+        "model": "addresses.address",
+        "pk": "8a25d9aa-3c61-43c1-9c6c-66207b72fe39",
+        "fields": {
+            "state": "BA",
+            "city": "Salvador",
+            "postal_code": "64260-000",
+            "street": "Antenor de Araujo Freitas",
+            "district": "Centro",
+            "number": 1905
+        }
+    },
+    {
+        "model": "addresses.address",
+        "pk": "bb15a098-39a7-49fa-9aba-6bbf1946f75c",
+        "fields": {
+            "state": "PR",
+            "city": "Cascavel",
+            "postal_code": "64260-000",
+            "street": "Antenor de Araujo Freitas",
+            "district": "Centro",
+            "number": 1905
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "0e4a3785-0aa5-4be8-a7a9-702756bef6dc",
+        "fields": {
+            "name": "Musical"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "157e6662-b52e-4cc3-9751-e712c4d515c6",
+        "fields": {
+            "name": "Lançamento"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "3b741830-b775-4ddf-b89d-085f29e0c2f7",
+        "fields": {
+            "name": "Festa"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "68ca9a13-476f-48c2-88a7-f8517ca1676d",
+        "fields": {
+            "name": "Festival"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "73227b47-0874-4dbc-8f8c-4d8dd1c71ea1",
+        "fields": {
+            "name": "Show"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "767f6857-ec31-45c7-835b-6d9d372e4fcf",
+        "fields": {
+            "name": "Convenção"
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": "0589d31b-9f8f-427e-a03e-7cf51bc56e45",
+        "fields": {
+            "title": "Borala Lançamento",
+            "date": "2022-09-05",
+            "description": "Lançamento do BoraLa",
+            "price": 0.0,
+            "sponsor": "Kenzie Academy",
+            "is_active": true,
+            "user": "de27fc53-10f8-4cde-982e-48abcc3f568f",
+            "address": "4e42e81d-3e0d-484f-bc73-d30f68247d76",
+            "categories": [
+                "3b741830-b775-4ddf-b89d-085f29e0c2f7",
+                "157e6662-b52e-4cc3-9751-e712c4d515c6"
+            ]
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": "2d34e682-3c3f-41c7-b3b6-fb9689207894",
+        "fields": {
+            "title": "Rock in Bahia",
+            "date": "2022-09-05",
+            "description": "Lançamento do BoraLa",
+            "price": 0.0,
+            "sponsor": "Kenzie Academy",
+            "is_active": true,
+            "user": "d6ac0fea-5ef8-4538-9ab9-db8d649d977a",
+            "address": "8a25d9aa-3c61-43c1-9c6c-66207b72fe39",
+            "categories": [
+                "73227b47-0874-4dbc-8f8c-4d8dd1c71ea1"
+            ]
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": "6be30037-3614-4b6a-9eac-2da886d812b6",
+        "fields": {
+            "title": "OtaquinhoCon",
+            "date": "2022-09-05",
+            "description": "Convenção de otakus cheirosos",
+            "price": 0.0,
+            "sponsor": "Kenzie Academy",
+            "is_active": true,
+            "user": "de27fc53-10f8-4cde-982e-48abcc3f568f",
+            "address": "bb15a098-39a7-49fa-9aba-6bbf1946f75c",
+            "categories": [
+                "767f6857-ec31-45c7-835b-6d9d372e4fcf"
+            ]
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": "967367ee-ee64-4f95-b38f-97dbd31bf0af",
+        "fields": {
+            "title": "Rock in Rio",
+            "date": "2022-09-05",
+            "description": "Lançamento do BoraLa",
+            "price": 0.0,
+            "sponsor": "Kenzie Academy",
+            "is_active": true,
+            "user": "d6ac0fea-5ef8-4538-9ab9-db8d649d977a",
+            "address": "4209551e-e73c-4c90-9a45-f663e1adc277",
+            "categories": [
+                "0e4a3785-0aa5-4be8-a7a9-702756bef6dc",
+                "68ca9a13-476f-48c2-88a7-f8517ca1676d"
+            ]
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "1c2bee83-4a86-4d3d-87eb-08f4c88468de",
+        "fields": {
+            "title": "Conversa com Guilherme Briggs",
+            "hour": "22:00:00",
+            "description": "entrevista",
+            "price": 100.0,
+            "talent": "Guilherme Briggs",
+            "is_active": true,
+            "event": "6be30037-3614-4b6a-9eac-2da886d812b6"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "2181c3c2-6946-4ad8-be51-a8dd66b4fd45",
+        "fields": {
+            "title": "Show da Ivete",
+            "hour": "22:00:00",
+            "description": "Show da ivete",
+            "price": 100.0,
+            "talent": "Ivete Sangalo",
+            "is_active": true,
+            "event": "967367ee-ee64-4f95-b38f-97dbd31bf0af"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "274abedb-b22d-4f43-b61d-13949bc85b7f",
+        "fields": {
+            "title": "Show da Kartoon",
+            "hour": "22:00:00",
+            "description": "show de musica",
+            "price": 100.0,
+            "talent": "Banda Kartoon",
+            "is_active": true,
+            "event": "6be30037-3614-4b6a-9eac-2da886d812b6"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "2e1506f0-413c-4d3a-89ba-6c47a76ead3a",
+        "fields": {
+            "title": "Show do Iron Maiden",
+            "hour": "22:00:00",
+            "description": "Up the irons",
+            "price": 100.0,
+            "talent": "Iron Maiden",
+            "is_active": true,
+            "event": "2d34e682-3c3f-41c7-b3b6-fb9689207894"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "65ad86ca-2748-4d8f-91a0-bc73a050a3e4",
+        "fields": {
+            "title": "Happy Hour",
+            "hour": "22:00:00",
+            "description": "Open bar",
+            "price": 100.0,
+            "talent": "Todos nós",
+            "is_active": true,
+            "event": "967367ee-ee64-4f95-b38f-97dbd31bf0af"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "7bd443a7-7c9f-4186-9859-423aa0da5518",
+        "fields": {
+            "title": "Show do Jota Quest",
+            "hour": "22:00:00",
+            "description": "Show do Jota Quest",
+            "price": 100.0,
+            "talent": "Jota QUest",
+            "is_active": true,
+            "event": "967367ee-ee64-4f95-b38f-97dbd31bf0af"
+        }
+    },
+    {
+        "model": "reviews.review",
+        "pk": "0fad406c-d1ea-4d80-854c-0bb9604c5821",
+        "fields": {
+            "title": "show da ivete",
+            "description": "muito animado",
+            "rating": 5,
+            "event": "0589d31b-9f8f-427e-a03e-7cf51bc56e45",
+            "user": "0bca28aa-0d8f-432a-b56e-0d10e28aafeb"
+        }
+    },
+    {
+        "model": "reviews.review",
+        "pk": "14621b56-e553-4a3d-aa45-636ff2d15cdb",
+        "fields": {
+            "title": "show da ivete",
+            "description": "muito animado",
+            "rating": 5,
+            "event": "6be30037-3614-4b6a-9eac-2da886d812b6",
+            "user": "69c75683-b94d-46a9-9362-963574982113"
+        }
+    },
+    {
+        "model": "reviews.review",
+        "pk": "18c31d3b-52fe-4f38-bf3f-e4d313bb8b33",
+        "fields": {
+            "title": "show da ivete",
+            "description": "muito animado",
+            "rating": 5,
+            "event": "0589d31b-9f8f-427e-a03e-7cf51bc56e45",
+            "user": "69c75683-b94d-46a9-9362-963574982113"
+        }
+    },
+    {
+        "model": "reviews.review",
+        "pk": "500a9cfb-d61b-4c57-b090-b252f939aced",
+        "fields": {
+            "title": "show da ivete",
+            "description": "muito animado",
+            "rating": 5,
+            "event": "6be30037-3614-4b6a-9eac-2da886d812b6",
+            "user": "0bca28aa-0d8f-432a-b56e-0d10e28aafeb"
+        }
+    },
+    {
+        "model": "reviews.review",
+        "pk": "7307b84c-7c18-4a76-94c0-032868a55023",
+        "fields": {
+            "title": "show da ivete",
+            "description": "muito animado",
+            "rating": 5,
+            "event": "2d34e682-3c3f-41c7-b3b6-fb9689207894",
+            "user": "0bca28aa-0d8f-432a-b56e-0d10e28aafeb"
+        }
+    },
+    {
+        "model": "reviews.review",
+        "pk": "c150b078-b06a-40e9-954c-b1c87185b93b",
+        "fields": {
+            "title": "show da ivete",
+            "description": "muito animado",
+            "rating": 5,
+            "event": "967367ee-ee64-4f95-b38f-97dbd31bf0af",
+            "user": "69c75683-b94d-46a9-9362-963574982113"
+        }
+    },
+    {
+        "model": "reviews.review",
+        "pk": "d68112e3-8281-4b5c-bc54-39084723dff5",
+        "fields": {
+            "title": "show da ivete",
+            "description": "muito animado",
+            "rating": 5,
+            "event": "967367ee-ee64-4f95-b38f-97dbd31bf0af",
+            "user": "0bca28aa-0d8f-432a-b56e-0d10e28aafeb"
+        }
+    },
+    {
+        "model": "reviews.review",
+        "pk": "d6a50a27-cbda-4812-94a3-acff983a1a28",
+        "fields": {
+            "title": "show da ivete",
+            "description": "muito animado",
+            "rating": 5,
+            "event": "2d34e682-3c3f-41c7-b3b6-fb9689207894",
+            "user": "69c75683-b94d-46a9-9362-963574982113"
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "0bca28aa-0d8f-432a-b56e-0d10e28aafeb",
+        "fields": {
+            "last_login": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:54:40.948Z",
+            "username": "comuna",
+            "email": "boracula@gmail.com",
+            "password": "pbkdf2_sha256$390000$nkghQ4z9A3PldovcLukzSZ$gM7yxKjYqy0gn23MfI00FPMn++V0gqg3diyVK65Nclo=",
+            "first_name": "user_comum",
+            "last_name": "borala",
+            "is_promoter": false,
+            "is_superuser": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "4fc83975-584a-4fd2-b2fd-cad965b43019",
+        "fields": {
+            "last_login": null,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:55:32.171Z",
+            "username": "admin",
+            "email": "borala1@gmail.com",
+            "password": "pbkdf2_sha256$390000$ijv68IHjJJzg1Wu2XuThHB$1MmUZZ1Hl48u5MzqhxD6IGywxsMMdNKHG4Wgz25r1A0=",
+            "first_name": "",
+            "last_name": "",
+            "is_promoter": false,
+            "is_superuser": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "69c75683-b94d-46a9-9362-963574982113",
+        "fields": {
+            "last_login": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:54:25.679Z",
+            "username": "comum",
+            "email": "borala2@gmail.com",
+            "password": "pbkdf2_sha256$390000$3Uq9eTwluVxxfQvbYDR1fF$R2XUU0I6UP/WqW1Y7PS0Uu65z+Savz7mnn8gYMBJUVk=",
+            "first_name": "user_comum",
+            "last_name": "borala",
+            "is_promoter": false,
+            "is_superuser": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "d6ac0fea-5ef8-4538-9ab9-db8d649d977a",
+        "fields": {
+            "last_login": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:53:59.798Z",
+            "username": "promoteiror",
+            "email": "borali@gmail.com",
+            "password": "pbkdf2_sha256$390000$LUq05LG5mZaNd6vsXTxJdk$QT8c8We3PH8zfMOLyr/QeLnu6E+p8eZNS2f9IhEjXHo=",
+            "first_name": "promoter de eventos",
+            "last_name": "borala",
+            "is_promoter": true,
+            "is_superuser": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "de27fc53-10f8-4cde-982e-48abcc3f568f",
+        "fields": {
+            "last_login": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:53:38.491Z",
+            "username": "promoter",
+            "email": "borala@gmail.com",
+            "password": "pbkdf2_sha256$390000$dzLQ4ELHrBOKdTePfffVae$NbBORAVDk+zrqO31r5ja3NFuZGkoXMZW8yTswXCZG7g=",
+            "first_name": "promoter de eventos",
+            "last_name": "borala",
+            "is_promoter": true,
+            "is_superuser": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

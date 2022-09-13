@@ -1,0 +1,97 @@
+[
+    {
+        "model": "users.user",
+        "pk": "0bca28aa-0d8f-432a-b56e-0d10e28aafeb",
+        "fields": {
+            "last_login": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:54:40.948Z",
+            "username": "comuna",
+            "email": "boracula@gmail.com",
+            "password": "pbkdf2_sha256$390000$nkghQ4z9A3PldovcLukzSZ$gM7yxKjYqy0gn23MfI00FPMn++V0gqg3diyVK65Nclo=",
+            "first_name": "user_comum",
+            "last_name": "borala",
+            "is_promoter": false,
+            "is_superuser": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "4fc83975-584a-4fd2-b2fd-cad965b43019",
+        "fields": {
+            "last_login": null,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:55:32.171Z",
+            "username": "admin",
+            "email": "borala1@gmail.com",
+            "password": "pbkdf2_sha256$390000$ijv68IHjJJzg1Wu2XuThHB$1MmUZZ1Hl48u5MzqhxD6IGywxsMMdNKHG4Wgz25r1A0=",
+            "first_name": "",
+            "last_name": "",
+            "is_promoter": false,
+            "is_superuser": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "69c75683-b94d-46a9-9362-963574982113",
+        "fields": {
+            "last_login": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:54:25.679Z",
+            "username": "comum",
+            "email": "borala2@gmail.com",
+            "password": "pbkdf2_sha256$390000$3Uq9eTwluVxxfQvbYDR1fF$R2XUU0I6UP/WqW1Y7PS0Uu65z+Savz7mnn8gYMBJUVk=",
+            "first_name": "user_comum",
+            "last_name": "borala",
+            "is_promoter": false,
+            "is_superuser": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "d6ac0fea-5ef8-4538-9ab9-db8d649d977a",
+        "fields": {
+            "last_login": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:53:59.798Z",
+            "username": "promoteiror",
+            "email": "borali@gmail.com",
+            "password": "pbkdf2_sha256$390000$LUq05LG5mZaNd6vsXTxJdk$QT8c8We3PH8zfMOLyr/QeLnu6E+p8eZNS2f9IhEjXHo=",
+            "first_name": "promoter de eventos",
+            "last_name": "borala",
+            "is_promoter": true,
+            "is_superuser": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": "de27fc53-10f8-4cde-982e-48abcc3f568f",
+        "fields": {
+            "last_login": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-09T13:53:38.491Z",
+            "username": "promoter",
+            "email": "borala@gmail.com",
+            "password": "pbkdf2_sha256$390000$dzLQ4ELHrBOKdTePfffVae$NbBORAVDk+zrqO31r5ja3NFuZGkoXMZW8yTswXCZG7g=",
+            "first_name": "promoter de eventos",
+            "last_name": "borala",
+            "is_promoter": true,
+            "is_superuser": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

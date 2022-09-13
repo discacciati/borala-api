@@ -1,0 +1,44 @@
+[
+    {
+        "model": "categories.category",
+        "pk": "0e4a3785-0aa5-4be8-a7a9-702756bef6dc",
+        "fields": {
+            "name": "Musical"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "157e6662-b52e-4cc3-9751-e712c4d515c6",
+        "fields": {
+            "name": "Lançamento"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "3b741830-b775-4ddf-b89d-085f29e0c2f7",
+        "fields": {
+            "name": "Festa"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "68ca9a13-476f-48c2-88a7-f8517ca1676d",
+        "fields": {
+            "name": "Festival"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "73227b47-0874-4dbc-8f8c-4d8dd1c71ea1",
+        "fields": {
+            "name": "Show"
+        }
+    },
+    {
+        "model": "categories.category",
+        "pk": "767f6857-ec31-45c7-835b-6d9d372e4fcf",
+        "fields": {
+            "name": "Convenção"
+        }
+    }
+]

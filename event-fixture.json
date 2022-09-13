@@ -1,0 +1,72 @@
+[
+    {
+        "model": "events.event",
+        "pk": "0589d31b-9f8f-427e-a03e-7cf51bc56e45",
+        "fields": {
+            "title": "Borala Lançamento",
+            "date": "2022-09-05",
+            "description": "Lançamento do BoraLa",
+            "price": 0.0,
+            "sponsor": "Kenzie Academy",
+            "is_active": true,
+            "user": "de27fc53-10f8-4cde-982e-48abcc3f568f",
+            "address": "4e42e81d-3e0d-484f-bc73-d30f68247d76",
+            "categories": [
+                "3b741830-b775-4ddf-b89d-085f29e0c2f7",
+                "157e6662-b52e-4cc3-9751-e712c4d515c6"
+            ]
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": "2d34e682-3c3f-41c7-b3b6-fb9689207894",
+        "fields": {
+            "title": "Rock in Bahia",
+            "date": "2022-09-05",
+            "description": "Lançamento do BoraLa",
+            "price": 0.0,
+            "sponsor": "Kenzie Academy",
+            "is_active": true,
+            "user": "d6ac0fea-5ef8-4538-9ab9-db8d649d977a",
+            "address": "8a25d9aa-3c61-43c1-9c6c-66207b72fe39",
+            "categories": [
+                "73227b47-0874-4dbc-8f8c-4d8dd1c71ea1"
+            ]
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": "6be30037-3614-4b6a-9eac-2da886d812b6",
+        "fields": {
+            "title": "OtaquinhoCon",
+            "date": "2022-09-05",
+            "description": "Convenção de otakus cheirosos",
+            "price": 0.0,
+            "sponsor": "Kenzie Academy",
+            "is_active": true,
+            "user": "de27fc53-10f8-4cde-982e-48abcc3f568f",
+            "address": "bb15a098-39a7-49fa-9aba-6bbf1946f75c",
+            "categories": [
+                "767f6857-ec31-45c7-835b-6d9d372e4fcf"
+            ]
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": "967367ee-ee64-4f95-b38f-97dbd31bf0af",
+        "fields": {
+            "title": "Rock in Rio",
+            "date": "2022-09-05",
+            "description": "Lançamento do BoraLa",
+            "price": 0.0,
+            "sponsor": "Kenzie Academy",
+            "is_active": true,
+            "user": "d6ac0fea-5ef8-4538-9ab9-db8d649d977a",
+            "address": "4209551e-e73c-4c90-9a45-f663e1adc277",
+            "categories": [
+                "0e4a3785-0aa5-4be8-a7a9-702756bef6dc",
+                "68ca9a13-476f-48c2-88a7-f8517ca1676d"
+            ]
+        }
+    }
+]

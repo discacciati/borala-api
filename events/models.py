@@ -7,7 +7,9 @@ class Event(models.Model):
     id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     title = models.CharField(max_length=100)
     date = models.DateField()
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
+    image_url = models.TextField(null=True)
+    site_url = models.TextField(null=True)
     price = models.FloatField(null=True, blank=True, default=0)
     sponsor = models.CharField(max_length=50, null=True, blank=True)
     is_active = models.BooleanField(blank=True, null=True, default=True)
@@ -16,6 +18,6 @@ class Event(models.Model):
     user = models.ForeignKey(
         "users.user", on_delete=models.CASCADE, related_name="events"
     )
-    address = models.ForeignKey(
+    address = models.OneToOneField(
         "addresses.address", on_delete=models.CASCADE, related_name="event"
     )
