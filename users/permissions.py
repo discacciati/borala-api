@@ -6,7 +6,7 @@ from .models import User
 
 class IsSuperUserPermission(permissions.BasePermission):
     def has_permission(self, request: Request, view: View):
-        return request.method in permissions.SAFE_METHODS or request.user.is_superuser
+        return request.user.is_superuser
 
 
 class IsOwnerPermission(permissions.BasePermission):
@@ -16,8 +16,6 @@ class IsOwnerPermission(permissions.BasePermission):
 
 class IsSuperUserMethodOrOwner(permissions.BasePermission):
     def has_object_permission(self, request, view: View, obj: User):
-        print(request.user.is_superuser, request.method)
-
         if request.method in view.admin_methods and request.user.is_superuser:
             return True
 

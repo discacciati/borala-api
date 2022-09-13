@@ -1,23 +1,27 @@
-from events.serializers import EventSerializer
 from rest_framework import serializers
-from users.serializers import UserSerializer
+from users.serializers import UserReviewSerializer, UserSerializer
 
 from reviews.models import Review
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    user = UserReviewSerializer(read_only=True)
+
     class Meta:
         model = Review
-        fields = "__all__"
+        fields = ["id", "title", "description", "rating", "user"]
 
-        read_only_fields = ["id", "event", "user"]
+        read_only_fields = ["id", "user"]
+        depth = 1
 
 
 class ReviewDetailSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user = UserReviewSerializer(read_only=True)
 
     class Meta:
         model = Review
-        fields = "__all__"
+        fields = ["id", "title", "description", "rating", "user"]
 
-        read_only_fields = ["id"]
+        read_only_fields = ["id", "user", "event"]
+
+        depth = 1

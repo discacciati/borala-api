@@ -1,34 +1,32 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.authtoken.models import Token
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.mixins import CreateModelMixin
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.views import APIView, Request, Response, status
-
-from .mixins import SerializerByMethodMixin
+from .mixins import FilterByQueryParamsMixin
 from .models import Event
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsPromoterOrReadOnly
 from .serializers import EventDetailedSerializer, EventSerializer
 
 
-class EventView(SerializerByMethodMixin, generics.ListCreateAPIView):
+class EventView(FilterByQueryParamsMixin, generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsPromoterOrReadOnly]
 
     queryset = Event.objects.all()
 
-    serializer_map = {
-        "GET": EventSerializer,
-        "POST": EventDetailedSerializer,
+    serializer_class = EventSerializer
+
+    querystring_map = {
+        'date':'date',
+        'title':'title__icontains',
+        'category':'category__name__iexact',
+        'state':'address__state__exact',
+        'city':'address__city__icontains',
+        'district':'address__district__icontains',
+        'lineup_title':'lineup__title__icontains',
+        'talent':'lineup__talent__icontains',
     }
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
-    # def get_queryset(self):
-    # return self.queryset.order_by("-date")
 
 
 class EventClosestDetailView(generics.ListAPIView):

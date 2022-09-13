@@ -1,0 +1,50 @@
+[
+    {
+        "model": "addresses.address",
+        "pk": "4209551e-e73c-4c90-9a45-f663e1adc277",
+        "fields": {
+            "state": "RJ",
+            "city": "Lagoa de Março",
+            "postal_code": "64260-000",
+            "street": "Antenor de Araujo Freitas",
+            "district": "Centro",
+            "number": 1905
+        }
+    },
+    {
+        "model": "addresses.address",
+        "pk": "4e42e81d-3e0d-484f-bc73-d30f68247d76",
+        "fields": {
+            "state": "PR",
+            "city": "Cascavel",
+            "postal_code": "64260-000",
+            "street": "Antenor de Araujo Freitas",
+            "district": "Centro",
+            "number": 1905
+        }
+    },
+    {
+        "model": "addresses.address",
+        "pk": "8a25d9aa-3c61-43c1-9c6c-66207b72fe39",
+        "fields": {
+            "state": "BA",
+            "city": "Salvador",
+            "postal_code": "64260-000",
+            "street": "Antenor de Araujo Freitas",
+            "district": "Centro",
+            "number": 1905
+        }
+    },
+    {
+        "model": "addresses.address",
+        "pk": "bb15a098-39a7-49fa-9aba-6bbf1946f75c",
+        "fields": {
+            "state": "PR",
+            "city": "Cascavel",
+            "postal_code": "64260-000",
+            "street": "Antenor de Araujo Freitas",
+            "district": "Centro",
+            "number": 1905
+        }
+    }
+]

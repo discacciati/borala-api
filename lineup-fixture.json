@@ -1,0 +1,80 @@
+[
+    {
+        "model": "line_up.lineup",
+        "pk": "1c2bee83-4a86-4d3d-87eb-08f4c88468de",
+        "fields": {
+            "title": "Conversa com Guilherme Briggs",
+            "hour": "22:00:00",
+            "description": "entrevista",
+            "price": 100.0,
+            "talent": "Guilherme Briggs",
+            "is_active": true,
+            "event": "6be30037-3614-4b6a-9eac-2da886d812b6"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "2181c3c2-6946-4ad8-be51-a8dd66b4fd45",
+        "fields": {
+            "title": "Show da Ivete",
+            "hour": "22:00:00",
+            "description": "Show da ivete",
+            "price": 100.0,
+            "talent": "Ivete Sangalo",
+            "is_active": true,
+            "event": "967367ee-ee64-4f95-b38f-97dbd31bf0af"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "274abedb-b22d-4f43-b61d-13949bc85b7f",
+        "fields": {
+            "title": "Show da Kartoon",
+            "hour": "22:00:00",
+            "description": "show de musica",
+            "price": 100.0,
+            "talent": "Banda Kartoon",
+            "is_active": true,
+            "event": "6be30037-3614-4b6a-9eac-2da886d812b6"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "2e1506f0-413c-4d3a-89ba-6c47a76ead3a",
+        "fields": {
+            "title": "Show do Iron Maiden",
+            "hour": "22:00:00",
+            "description": "Up the irons",
+            "price": 100.0,
+            "talent": "Iron Maiden",
+            "is_active": true,
+            "event": "2d34e682-3c3f-41c7-b3b6-fb9689207894"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "65ad86ca-2748-4d8f-91a0-bc73a050a3e4",
+        "fields": {
+            "title": "Happy Hour",
+            "hour": "22:00:00",
+            "description": "Open bar",
+            "price": 100.0,
+            "talent": "Todos nós",
+            "is_active": true,
+            "event": "967367ee-ee64-4f95-b38f-97dbd31bf0af"
+        }
+    },
+    {
+        "model": "line_up.lineup",
+        "pk": "7bd443a7-7c9f-4186-9859-423aa0da5518",
+        "fields": {
+            "title": "Show do Jota Quest",
+            "hour": "22:00:00",
+            "description": "Show do Jota Quest",
+            "price": 100.0,
+            "talent": "Jota QUest",
+            "is_active": true,
+            "event": "967367ee-ee64-4f95-b38f-97dbd31bf0af"
+        }
+    }
+]
