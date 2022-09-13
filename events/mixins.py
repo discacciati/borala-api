@@ -1,8 +1,3 @@
-class SerializerByMethodMixin:
-    
-    def get_serializer_class(self):
-        return self.serializer_map.get(self.request.method)
-
 class FilterByQueryParamsMixin:
     def get_query_options(self, query_params, lookup_dict = {}):
         for param in query_params.keys():

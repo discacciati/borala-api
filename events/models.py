@@ -9,6 +9,7 @@ class Event(models.Model):
     date = models.DateField()
     description = models.TextField(null=True, blank=True)
     image_url = models.TextField(null=True)
+    site_url = models.TextField(null=True)
     price = models.FloatField(null=True, blank=True, default=0)
     sponsor = models.CharField(max_length=50, null=True, blank=True)
     is_active = models.BooleanField(blank=True, null=True, default=True)
