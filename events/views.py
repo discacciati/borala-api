@@ -22,8 +22,8 @@ class EventView(FilterByQueryParamsMixin, SerializerByMethodMixin, generics.List
         'title':'title__icontains',
         'category':'category__name__iexact',
         'state':'address__state__exact',
-        'city':'address__city__iexact',
-        'district':'address__district__iexact',
+        'city':'address__city__icontains',
+        'district':'address__district__icontains',
         'lineup_title':'lineup__title__icontains',
         'talent':'lineup__talent__icontains',
     }

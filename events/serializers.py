@@ -26,7 +26,20 @@ class EventDetailedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ["id","title", "date", "description", "price", "sponsor", "is_active", "categories", "address", "user_id" ]
+        fields = [
+            "id",
+            "title", 
+            "date", 
+            "description", 
+            "price", 
+            "sponsor", 
+            "is_active", 
+            "categories", 
+            "address", 
+            "user_id",
+            "image_url",
+        ]
+
         read_only_fields = ["id", "lineup", "categories"]
         depth = 1
 
