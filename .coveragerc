@@ -1,0 +1,9 @@
+[run]
+source = .
+omit = 
+    venv/*
+    borala_api_rest/*
+    manage.py
+
+[report]
+show_missing = True
