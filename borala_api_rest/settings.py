@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     'drf_spectacular',
+    "django_nose",
 ]
 
 MY_APPS = [
@@ -183,3 +184,10 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
 }
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=events,line_up,reviews,users,addresses,categories',
+]
