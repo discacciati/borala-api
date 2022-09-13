@@ -65,6 +65,7 @@ class EventDetailedSerializer(serializers.ModelSerializer):
             address_data = validated_data.pop("address")
             for key, value in address_data.items():
                 setattr(instance.address, key, value)
+            instance.address.save()
 
         if "categories" in validated_data.keys():
             categories_data = validated_data.pop("categories")
