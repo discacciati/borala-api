@@ -46,6 +46,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
+    'drf_spectacular',
     "django_nose",
 ]
 
@@ -173,6 +174,15 @@ if DATABASE_URL:
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 5,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'BoraLa API',
+    'DESCRIPTION': 'O MELHOR HAPPY HOUR DO BRASIL, AQUI NOlogoNav',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
