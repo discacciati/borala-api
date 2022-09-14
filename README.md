@@ -1,7 +1,7 @@
-# RestAPI BoraLá
+# boralá. Rest API
 
 <h1 align="center">
-  RestAPI BoraLá
+  boralá. Rest API 
 </h1>
 
 <p align = "center">
@@ -28,12 +28,12 @@ As rotas estarão protegidas com autenticação(token) e autorização.
 
 ---
 
-- Suelly Karine - Scrum Master [https://www.linkedin.com/in/suellyaraujo/] [https://github.com/suellykarine]
-- Eliane Discacciati - Product Owner [https://www.linkedin.com/in/eliane-discacciati/] [https://github.com/discacciati]
-- Renata Juraski - Desenvolvedor [https://www.linkedin.com/in/renatajuraski/] [https://github.com/rejuraski]
-- Raniery Almeida - Desenvolvedor [https://www.linkedin.com/in/raniery-almeida-de-oliveira-886974115/] [https://github.com/almeida-raniery]
-- Acauan Nascimento de Souza - Desenvolvedor [https://www.linkedin.com/in/acauan-nascimento/] [https://github.com/acauankz]
-- Ester Táfnis - Tech Lead [https://www.linkedin.com/in/ester-frazao/] [https://github.com/esterfrazao]
+- Suelly Araujo - Scrum Master [Linkedin](https://www.linkedin.com/in/suellyaraujo/) e [Github](https://github.com/suellykarine)
+- Eliane Discacciati - Product Owner [Linkedin](https://www.linkedin.com/in/eliane-discacciati/) e [Github](github.com/discacciati)
+- Renata Juraski - Desenvolvedor [Linkedin](https://github.com/rejuraski) e [Github](https://www.linkedin.com/in/renatajuraski/)
+- Raniery Almeida - Desenvolvedor [Linkedin](https://www.linkedin.com/in/raniery-almeida-de-oliveira-886974115/) e [GitHub](https://github.com/almeida-raniery)
+- Acauan Nascimento - Desenvolvedor [Linkedin](https://www.linkedin.com/in/acauan-nascimento/) e [Github](https://github.com/acauankz)
+- Ester Táfnis - Tech Lead [Linkedin](https://www.linkedin.com/in/ester-frazao/) e [Github](github.com/esterfrazao)
 
 ## Links pertinentes
 
@@ -41,8 +41,9 @@ As rotas estarão protegidas com autenticação(token) e autorização.
 
 - Diagrama de Relacionamento: [https://drive.google.com/file/d/1FMyTENme8ABBg6DhCzU7cJMIomg-hes\_/view](https://drive.google.com/file/d/1FMyTENme8ABBg6DhCzU7cJMIomg-hes_/view)
 
-- Deploy Heroku: https://bora-la-api.herokuapp.com/api/
-- Deploy do Front-End:
+- Link para API: https://bora-la-api.herokuapp.com/api/
+- Link bopara o site ralá.:
+- Documentações: [swagger](https://bora-la-api.herokuapp.com/schema/swagger-ui/) e [redoc](https://bora-la-api.herokuapp.com/schema/redoc/)
 
 ---
 
@@ -59,8 +60,6 @@ As rotas estarão protegidas com autenticação(token) e autorização.
 `/users/<uuid:user_id>/` GET PATCH DELETE
 
 `/events/` GET POST
-
-`/events/?title=<str>&state=<str>` GET
 
 `/events/closest/` GET
 
@@ -108,8 +107,4 @@ As rotas estarão protegidas com autenticação(token) e autorização.
 
 ## Autenticações e Permissões
 
-|                   | Administrador | Promotor de Eventos | Usuário Autenticado(Login) | Usuário Não Autenticado |
-| ----------------- | ------------- | ------------------- | -------------------------- | ----------------------- |
-| /register/ (POST) | True          | True                | True                       | True                    |
-
-| /login/ (POST) | True | True | True | True |
+<img src="./assests/Screenshot%20from%202022-09-14%2015-08-02.png">
