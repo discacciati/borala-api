@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase
 
 from users.models import User
 from events.models import Event
-from events.serializers import EventDetailedSerializer
+from events.serializers import EventSerializer
 from reviews.models import Review
 from line_up.models import LineUp
 
@@ -28,7 +28,7 @@ class EventRelationsTest(APITestCase):
             }
         }
 
-        cls.event_serializer = EventDetailedSerializer(data=cls.new_event_data)
+        cls.event_serializer = EventSerializer(data=cls.new_event_data)
         cls.event            = Event.objects.all()[0]
 
     def test_should_not_create_event_without_promoter(self):

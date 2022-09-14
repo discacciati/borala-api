@@ -1,29 +1,34 @@
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
-from .mixins import FilterByQueryParamsMixin
+from django_filters import rest_framework as filters
 from .models import Event
 from .permissions import IsOwnerOrReadOnly, IsPromoterOrReadOnly
 from .serializers import EventDetailedSerializer, EventSerializer
 
+class EventListFilter(filters.FilterSet):
+    date         = filters.DateFilter(field_name="date", lookup_expr="gte")
+    title        = filters.CharFilter(field_name="title", lookup_expr="icontains")
+    price        = filters.NumberFilter(field_name="price", lookup_expr="lte")
+    category     = filters.CharFilter(field_name="categories__name", lookup_expr="iexact")
+    state        = filters.CharFilter(field_name="address__state", lookup_expr="iexact")
+    city         = filters.CharFilter(field_name="address__city", lookup_expr="icontains")
+    district     = filters.CharFilter(field_name="address__district", lookup_expr="icontains")
+    lineup_title = filters.CharFilter(field_name="lineup__title", lookup_expr="icontains")
+    talent       = filters.CharFilter(field_name="lineup__talent", lookup_expr="icontains")
 
-class EventView(FilterByQueryParamsMixin, generics.ListCreateAPIView):
+    class Meta:
+        model  = Event
+        fields = ["categories", "lineup", "address"]
+
+
+class EventView(generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsPromoterOrReadOnly]
 
     queryset = Event.objects.all()
 
     serializer_class = EventSerializer
-
-    querystring_map = {
-        'date':'date',
-        'title':'title__icontains',
-        'category':'category__name__iexact',
-        'state':'address__state__exact',
-        'city':'address__city__icontains',
-        'district':'address__district__icontains',
-        'lineup_title':'lineup__title__icontains',
-        'talent':'lineup__talent__icontains',
-    }
+    filterset_class  = EventListFilter
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
