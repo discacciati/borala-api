@@ -1,1 +1,1 @@
-web: gunicorn borala_api_rest.wsgi
+web:gunicorn borala_api_rest.wsgi
