@@ -42,7 +42,7 @@ As rotas estarão protegidas com autenticação(token) e autorização.
 - Diagrama de Relacionamento: [https://drive.google.com/file/d/1FMyTENme8ABBg6DhCzU7cJMIomg-hes\_/view](https://drive.google.com/file/d/1FMyTENme8ABBg6DhCzU7cJMIomg-hes_/view)
 
 - Link para API: https://bora-la-api.herokuapp.com/api/
-- Link para o site boralá.:
+- Link para o site boralá.: https://borala.vercel.app/
 - Documentações: [swagger](https://bora-la-api.herokuapp.com/schema/swagger-ui/) e [redoc](https://bora-la-api.herokuapp.com/schema/redoc/)
 
 ---
