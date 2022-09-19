@@ -5,15 +5,18 @@
 </h1>
 
 <p align = "center">
-Projeto de Back- End para a aplicação Front-End BoraLá -  Em todo o país, eventos de lazer, cultura e afins são sempre uma questão muito requisitada por toda população, entretanto, as buscas não são fáceis em virtude das publicações não estarem centralizadas e com isso, os mais pequenos sempre passam despercebidos. A procura é algo muito complicado e os locais acabam por perder clientes/espectadores por não conseguir divulgar de maneira simples e prática a programação diária ou do final de semana. 
+Projeto de Back- End para a uma aplicação Front-End chamada BoraLá</p>
+
+<p align="center">
+Motivação: Em todo o país, eventos de lazer, cultura e afins são sempre uma questão muito requisitada por toda população, entretanto, as buscas não são fáceis em virtude das publicações não estarem centralizadas e com isso, os mais pequenos sempre passam despercebidos. A procura é algo muito complicado e os locais acabam por perder clientes/espectadores por não conseguir divulgar de maneira simples e prática a programação diária ou do final de semana. 
 </p>
 
 <p align = "center">
-A aplicação BoraLá trouxe uma solução de Front-End para esse problema, que viabiliza aos usuários e donos de estabelecimentos, se cadastrarem na aplicação para  visualizar eventos, como cadastrar e divulgar os mesmos. Além disso, permite também realizar filtros nas buscas por eventos ou atrações dos eventos. As postagens com relação aos eventos estarão explicitamente datadas e explicadas sobre como e onde irão ocorrer e quais são os tipos de atrações. Os usuários comuns poderão ainda fazer uma avaliação dos eventos. 
+A aplicação BoraLá buscou uma solução de Front-End para esse problema, que viabiliza aos usuários e donos de estabelecimentos, se cadastrarem na aplicação para  visualizar eventos, como cadastrar e divulgar os mesmos. Além disso, permite também realizar filtros nas buscas por eventos ou atrações dos eventos. As postagens com relação aos eventos estarão explicitamente datadas e explicadas sobre como e onde irão ocorrer e quais são os tipos de atrações. Os usuários comuns poderão ainda fazer uma avaliação dos eventos. 
 </p>
 
 <p align = "center">
-Elaboração de toda a parte de back-end da aplicação BoraLá, com a criação de uma RestAPI que possa conectar as rotas percorridas pelos usuários para criarem, visualizarem, atualizarem e avaliarem os eventos. 
+Solução: Elaboração de toda a parte de back-end da aplicação BoraLá, com a criação de uma RestAPI que possa conectar as rotas percorridas pelos usuários para criarem, visualizarem, atualizarem e avaliarem os eventos. 
 Nossa API terá as rotas de Cadastro e Login dos usuários. Dividindo-os em usuários Administradores, Promotores e usuários comuns. E nivelando as permissões de cada usuário, aos acessos nas rotas.
 
 As rotas estarão protegidas com autenticação(token) e autorização.
